@@ -1,0 +1,28 @@
+@if (showFooter()) {<!--Creamos este bloque if -->
+  <!--Añadimos nuestra etiqueta footer con la clase footer-->
+  <footer class="footer">
+    <div class="footer-content"><!--añadimos nuestra etiqueta con la clase footercontent para dar estilos en css-->
+      <!--Creamos tres seciones  dentro de nuestro footer dentro de un contenedor div  con la clase footer secciton-->
+      <div class="footer-section">
+        <h3>🛒 Mi Tienda</h3>
+        <p>Tu plataforma favorita para gestionar inventarios de forma profesional y rápida.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Enlaces</h4>
+        <a routerLink="/products">Productos</a>
+        <a routerLink="/edit-profile">Mi Perfil</a>
+      </div>
+
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <span>✉️ soporte&#64;mitienda.com</span>
+        <span>📍 México, 2026</span>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Mi Tienda. Desarrollado con Laravel 12 & Angular 21.</p>
+    </div>
+  </footer>
+}

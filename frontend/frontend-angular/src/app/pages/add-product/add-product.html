@@ -1,0 +1,114 @@
+<!--Primero colocamos un div padre con la clase form-container esto para posteriormente trabajar con css -->
+<div class="form-container">
+<!--Creamos este contenedor add-card que es donde tendremos todos nuestros elementos como titulo del formulario y el mismo formulario-->
+  <div class="add-card">
+    <!--Titulo del formulario-->
+    <h2>✨ Agregar Nuevo Producto</h2>
+<!--ngSubmit nos servira para que una vez que preciones enter o demos click en el boton Guardar
+producto se ejecutara nuestra funcion saveProduct encargada de guardar nuestro producto -->
+    <form (ngSubmit)="saveProduct()">
+   <!--Dentro de este contenedor div colocaremos nuestro primer label y imput llamado name donde nos servira para guardar el nombre del producto con la directiva ngModel vinculamos nuestro imput con nuestro objeto product en su atributo name con este todo lo que escribamos dentro de este input estara seteando esta propiedad product.name.
+   required es de suma importancia ya que si se deja el campo vacio pasara a ser invalid.
+
+   Creamos una variable que solo se puede usar aqui en el html con #nameField y  con = ngModel le decimos que queremos que guarde toda la informacion tecnica del estado del input si tiene errores si ha sido tocado o si es valido
+
+   Ahora con [class.invalid-input] esta propiedad controla el estilo visual donde mediante
+   una condicion diremos si le aplicamos o no los estilos css a la clase invalid-input 
+   posterioemnete en el igual si la variable namefield es invalid osea el input esta en blanco y si
+   se cumple el nameField.touched   que quiere decir que se entro al campo y luego se salio de el
+    -->   
+      <div class="form-group">
+        <label>Nombre del Producto</label>
+        <input 
+    type="text" name="name"
+    [(ngModel)]="product.name" 
+    required 
+    #nameField="ngModel"
+    [class.invalid-input]="nameField.invalid && nameField.touched"
+  >
+  <!--aqui agregamos un bloque if donde si se cumple la condicion nameField.invalid y nameField.touched mostraremos el span con nuestro mensaje de error-->
+  @if (nameField.invalid && nameField.touched) {
+    <span class="error-message">Este campo es necesario</span>
+  }
+      </div>
+
+      <div class="form-group">
+        <label>Precio (Pesos)</label>
+<!--Nuestro input sera de tipo numerico con ngModel vinculamos nuestro product.price con nuestro input number, placeholder es el texto en gris que queremos mostror cuando esta vacio despues con 
+required hacemos que este campo debe tener algo de lo contrario sera invalid
+con min le decimos que para que el numero sea valido debe ser como minimo 1
+agregamos nuestra variable priceField para detectar los cambios en nuestro input
+class-invalid-input nos permitira verificar si se cumple las condicones priceField invalid y priceField.touched -->
+        <input 
+          type="number" 
+          [(ngModel)]="product.price" 
+          name="price" 
+          placeholder="0.00"
+          required
+          min="0.01"
+          #priceField="ngModel"
+          [class.invalid-input]="priceField.invalid && priceField.touched"
+        >
+  <!--Creamos este primer bloque if donde se deben cumplir dos condiciones la primera priceField debe ser invalid y pricedField tambien debe ser touched con esto nos aseguramos de que no aparezcan los mensajes de error apenas cargue el formulario ya que al cargar el formulario pues los inputs al estar vacios son invalid pero se necesita tocar un input y salir sin escribir nada para que se cumplan ambas condiciones y muestre el mensaje de error -->
+        @if (priceField.invalid && priceField.touched) {
+  <!--Este segundo if nos permite evaluar el tipo de error donde si el error es de tipo required
+  es decir el error se debe a que el input esta vacio mostrara este mensaje--> 
+          @if (priceField.errors?.['required']) {
+            <span class="error-message">El precio es obligatorio</span>
+          }
+ <!--Este otro bloque if evalua si el error fue por min es decir se ingreso un numero menor al
+ que especificamos en min mostrara este mensaje de error-->
+          @if (priceField.errors?.['min']) {
+            <span class="error-message">El precio debe ser mayor a 0</span>
+          }
+        }
+      </div>
+<!--Este contenedor div contiene un label y un textarea destinados a guardar la descripcion del
+producto. Con ngModel vinculamos lo que tengamos en este textarea con la propiedad description 
+de nuestro objeto product. 
+con placeholder mostraremos un texto gris que diga Escribe los detalles aqui,
+posteriormente required indicamos que este campo es obligatorio
+descFiel creamos una varible de estado para el input
+con class.invalid-input le decimos que si se cumplen las condiones descFiel.inalid y descField.touched se le aplicara un estilo css-->
+      <div class="form-group">
+        <label>Descripción</label>
+       <textarea 
+          [(ngModel)]="product.description" 
+          name="description" 
+          rows="4" 
+          placeholder="Escribe los detalles aquí..."
+          required
+          #descField="ngModel"
+          [class.invalid-input]="descField.invalid && descField.touched"
+        ></textarea>
+        <!--Colocamos este if donde se deben cumplir las dos conciones descField.invalid && descField.touched si es asi mostrara nuestro mensaje o spam-->
+        @if (descField.invalid && descField.touched) {
+          <span class="error-message">La descripción es obligatoria</span>
+        }
+      </div>
+      <div class="form-group">
+  <label>Imagen del Producto (Opcional)</label>
+  <input 
+    type="file" 
+    (change)="onFileSelected($event)" 
+    accept="image/*"
+    class="form-control"
+  >
+</div>
+<!--Aqui agregamos otro bloque if donde en caso de que errorMesagge tengo algo osea sea difenrente a vacio eso vara true y mostraremos el contenedor div que contiene nuestra signal errorMessage-->
+      @if (errorMessage()) {
+  <div class="alert-error">
+    {{ errorMessage() }}
+  </div>
+}
+<!--Agregamos nuestro boton de tipo submit con su clase btn-save con el texto guardar producto
+el cual al hacer click mandara llamar a la funcion saveProduct para guardar nuestro producto con los datos que colocamos-->
+      <button type="submit" class="btn-save">
+        🚀 Guardar Producto
+      </button>
+<!--Agregamos un enlace con la ruta base para volver a donde estan nuestro productos-->
+      <a routerLink="/products" class="btn-back">⬅️ Volver a la lista</a>
+
+    </form>
+  </div>
+</div>

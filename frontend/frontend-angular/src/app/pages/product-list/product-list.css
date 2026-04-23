@@ -1,0 +1,158 @@
+/* --- DISEÑO DE LA REJILLA DE PRODUCTOS --- */
+
+/* Contenedor principal: Seleccionamos el <div> con la clase 'product-grid' */
+.product-grid {
+  display: flex; /* Convierte el contenedor en un flexbox para alinear las tarjetas */
+  flex-wrap: wrap; /* Permite que las tarjetas bajen a la siguiente línea si no caben */
+  gap: 20px; /* Crea un espacio de 20px entre cada tarjeta (horizontal y vertical) */
+  padding: 20px; /* Margen interno de 20px para que no pegue a los bordes de la pantalla */
+  justify-content: center; /* Centra el grupo de tarjetas horizontalmente */
+}
+
+/* Tarjeta individual: Seleccionamos el <div> con clase 'product-card' dentro del bucle @for */
+.product-card {
+  background: #ffffff; /* Fondo blanco para que la tarjeta resalte */
+  border-radius: 12px; /* Redondea las esquinas de la tarjeta */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra suave para dar profundidad */
+  padding: 0; /* Quitamos el padding para que la imagen toque los bordes superiores */
+  width: 280px; /* Ancho fijo de 280px para que todas las tarjetas sean iguales */
+  border: 1px solid #eee; /* Borde gris muy claro para definir el límite de la card */
+  transition: transform 0.2s; /* Animación de 0.2s para el efecto de movimiento al pasar el ratón */
+  overflow: hidden; /* Corta cualquier contenido (como la imagen) que intente salirse del redondeado */
+}
+
+/* Efecto Hover: Seleccionamos 'product-card' cuando el ratón está encima (:hover) */
+.product-card:hover {
+  transform: translateY(-5px); /* Desplaza la tarjeta 5px hacia arriba (efecto levitación) */
+}
+
+/* --- SECCIÓN DE IMAGEN --- */
+
+/* Contenedor de imagen: Seleccionamos el <div> con clase 'product-image' */
+.product-image {
+  width: 100%; /* Ocupa todo el ancho de la tarjeta */
+  height: 180px; /* Altura fija para que todas las imágenes midan lo mismo */
+  overflow: hidden; /* Oculta partes de la imagen que excedan los 180px */
+  background-color: #f9f9f9; /* Fondo gris claro por si la imagen tarda en cargar */
+}
+
+/* Imagen dentro de la card: Seleccionamos la etiqueta <img> dentro de 'product-image' */
+.product-image img {
+  width: 100%; /* La imagen se estira al ancho del contenedor */
+  height: 100%; /* La imagen se estira al alto del contenedor */
+  object-fit: cover; /* ¡CLAVE!: Recorta la imagen para llenar el espacio sin deformarla */
+  display: block; /* Quita espacios vacíos extra en la base de la imagen */
+}
+
+/* --- INFORMACIÓN DEL PRODUCTO --- */
+
+/* Bloque de texto: Seleccionamos el <div> con clase 'product-info' */
+.product-info {
+  padding: 15px; /* Recuperamos el espacio interno de 15px para el texto */
+}
+
+/* Título del producto: Seleccionamos la etiqueta <h3> dentro de la card */
+.product-card h3 {
+  margin: 0 0 5px 0; /* Quita márgenes excepto el de abajo (5px) para separar del autor */
+  color: #333; /* Color gris muy oscuro */
+}
+
+/* Autor/Creador: Seleccionamos el elemento <p> con la clase 'author' */
+.author {
+  font-size: 0.85rem; /* Letra pequeña para información secundaria */
+  color: #7f8c8d; /* Color gris azulado elegante */
+  margin: 5px 0; /* Separación de 5px arriba y abajo */
+  display: flex; /* Usamos flex para alinear el icono de usuario con el texto */
+  align-items: center; /* Centra verticalmente el icono y el texto */
+  gap: 5px; /* Espacio de 5px entre el icono 👤 y el texto */
+}
+
+/* Nombre del autor resaltado: Seleccionamos la etiqueta <strong> dentro de 'author' */
+.author strong {
+  color: #34495e; /* Color azul oscuro profundo para resaltar el nombre */
+}
+
+/* Precio: Seleccionamos el elemento <p> con la clase 'price' */
+.price {
+  font-size: 1.2rem; /* Letra grande para que el precio destaque */
+  font-weight: bold; /* Texto en negrita */
+  color: #2ecc71; /* Color verde para representar valor/dinero */
+  margin: 5px 0; /* Espacio arriba y abajo */
+}
+
+/* Descripción: Seleccionamos el elemento <p> con la clase 'description' */
+.description {
+  font-size: 0.9rem; /* Letra ligeramente pequeña */
+  color: #666; /* Color gris para el texto descriptivo */
+  /* --- TRUCO PARA LIMITAR TEXTO A 2 LÍNEAS --- */
+  display: -webkit-box; /* Requerido para el sistema de cajas de Safari/Chrome */
+  -webkit-line-clamp: 2; /* Corta el texto automáticamente al llegar a la segunda línea */
+  -webkit-box-orient: vertical; /* Define la orientación del recorte */
+  overflow: hidden; /* Oculta el resto del texto que fue cortado */
+}
+
+/* --- BOTONES Y ACCIONES --- */
+
+/* Contenedor de botones: Seleccionamos el <div> con clase 'actions' */
+.actions {
+  display: flex; /* Alinea los botones uno al lado del otro */
+  gap: 10px; /* Espacio de 10px entre cada botón */
+  padding: 0 15px 15px 15px; /* Padding: 0 arriba, 15px lados y abajo */
+  flex-wrap: wrap; /* Si los botones no caben, bajan a la siguiente línea */
+}
+
+/* Estilo base de botones: Seleccionamos todas las etiquetas <button> */
+button {
+  border: none; /* Quita el borde de fábrica */
+  padding: 8px 12px; /* Tamaño del botón */
+  border-radius: 6px; /* Bordes ligeramente redondeados */
+  cursor: pointer; /* Cambia el puntero a mano */
+  font-size: 0.9rem; /* Tamaño de letra */
+  transition: opacity 0.2s; /* Suaviza el efecto de transparencia al hacer clic */
+}
+
+/* Botón Editar: Clase 'btn-edit' */
+.btn-edit { background-color: #f1c40f; color: white; } /* Fondo amarillo, texto blanco */
+
+/* Botón Eliminar: Clase 'btn-delete' */
+.btn-delete { background-color: #e74c3c; color: white; } /* Fondo rojo, texto blanco */
+
+/* Botón Ver detalles: Clase 'btn-detail' */
+.btn-detail { background-color: #3498db; color: white; } /* Fondo azul, texto blanco */
+
+/* Enlace de "Agregar": Seleccionamos el <a> con clase 'add-link' */
+.add-link {
+  display: inline-block; /* Permite aplicar padding y márgenes correctamente */
+  margin: 20px; /* Separa el botón de otros elementos */
+  padding: 10px 20px; /* Tamaño del botón de enlace */
+  background: #27ae60; /* Fondo verde oscuro */
+  color: white; /* Texto blanco */
+  text-decoration: none; /* Quita el subrayado del link */
+  border-radius: 25px; /* Bordes muy redondeados (estilo píldora) */
+}
+
+/* --- ESTADO VACÍO (CUANDO NO HAY PRODUCTOS) --- */
+
+/* Contenedor Empty State: Seleccionamos el <div> con clase 'empty-state' (dentro del @empty) */
+.empty-state {
+  grid-column: 1 / -1; /* Si usaras Grid, esto haría que ocupe todo el ancho */
+  text-align: center; /* Centra todo el contenido */
+  padding: 50px 20px; /* Mucho espacio arriba y abajo para destacar el mensaje */
+  background: #f9f9f9; /* Fondo gris muy suave */
+  border-radius: 15px; /* Esquinas muy redondeadas */
+  border: 2px dashed #ddd; /* Borde punteado para indicar "zona vacía" */
+  margin: 20px; /* Separación externa */
+}
+
+/* Icono de la caja: Seleccionamos el <div> con clase 'empty-icon' */
+.empty-icon {
+  font-size: 3rem; /* Tamaño de icono muy grande (48px) */
+  margin-bottom: 10px; /* Espacio debajo del icono */
+}
+
+/* Párrafo informativo: Seleccionamos el <p> dentro de 'empty-state' */
+.empty-state p {
+  color: #666; /* Texto gris */
+  font-size: 1.1rem; /* Letra un poco más grande de lo normal */
+  margin-bottom: 20px; /* Espacio antes del botón de crear producto */
+}

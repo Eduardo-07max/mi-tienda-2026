@@ -1,0 +1,40 @@
+<!--Nuestro contenedor div padre con la clase auth-wrapper para dar estilos en css-->
+<div class="auth-wrapper">
+  <!--Nuestro contenedor que servira como una card y contiene nuestros titulos y formulario-->
+  <div class="auth-container">
+    <!--Titulo del formulario-->
+    <h2>Iniciar Sesión</h2>
+<!--Aqui en el formulario gracias a [formGroup]="loginForm" le decimos al html que todos los inputs
+de este html le pertencen al objeto loginForm y al darle click al boton entrar a mi cuenta invocamos
+al metodo onSubmit que nos hara iniciar sesion-->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!--Aqui creamos o agrupamos un label y un input detro de un div con la clase form-group para
+      dar estilos en css-->
+      <div class="form-group">
+        <label>Email</label>
+        <!--Aqui con formControlName="email" Angular buscara una propiedad llamada name para asignarle
+        el valor del input con ese mismo nombre en tiempo real, definimos que el input sea de tipo email -->
+        <input type="email" formControlName="email" placeholder="tu@email.com">
+      </div>
+
+      <div class="form-group">
+        <label>Contraseña</label>
+        <!--Aqui con formControlName="password" Angular buscara la propiedad password en el objeto
+        loginForm para vincular ese valor a nuestro input-->
+        <input type="password" formControlName="password" placeholder="********">
+      </div>
+<!--Aqui colocamos un mensaje de error que solo aparecera si nuestra variable tiene un mensaje de
+error es decir algo salio mal -->
+      @if (errorMessage()) {
+        <p class="error-msg">⚠️ {{ errorMessage() }}</p>
+      }
+<!--Nuestro boton de tipo submit que solo se podra pulsar cuando se cumplan las validaciones que definimos
+en login.ts -->
+      <button type="submit" [disabled]="loginForm.invalid">Entrar a mi cuenta</button>
+    </form>
+<!--Creamos un enlace para movernos al componente de registro en caso de que no tengas cuenta-->
+    <p class="register-text">
+      ¿No tienes cuenta? <a routerLink="/register">Regístrate aquí</a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,147 @@
+/* --- DISEÑO DEL CONTENEDOR Y FONDO --- */
+
+/* Contenedor Raíz: Seleccionamos el <div> con la clase 'main-container' */
+.main-container {
+  display: flex; /* Activa el modelo Flexbox para posicionar la tarjeta */
+  justify-content: center; /* Centra la tarjeta horizontalmente */
+  align-items: center; /* Centra la tarjeta verticalmente */
+  min-height: 85vh; /* Ocupa casi toda la altura de la pantalla para el centrado */
+  padding: 20px; /* Margen para que no pegue a los bordes en celulares */
+  background-color: #f4f7f6; /* Un color de fondo gris verdoso muy suave para dar limpieza */
+}
+
+/* Tarjeta de Perfil: Seleccionamos el <div> con la clase 'detail-card' */
+.detail-card {
+  background: white; /* Fondo blanco puro */
+  width: 100%; /* Se adapta al ancho disponible */
+  max-width: 450px; /* Ancho máximo ideal para formularios de perfil */
+  padding: 30px; /* Espacio interno entre el borde y el contenido */
+  border-radius: 20px; /* Esquinas muy redondeadas para un estilo moderno */
+  /* Sombra muy sutil (0.05 de opacidad) para un look minimalista */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+}
+
+/* --- SECCIÓN DEL AVATAR (FOTO DE PERFIL) --- */
+
+/* Contenedor de subida: Seleccionamos el <div> con clase 'avatar-upload-section' */
+.avatar-upload-section {
+  display: flex; /* Usamos flex para alinear los elementos en columna */
+  flex-direction: column; /* Alinea la foto arriba y el botón abajo */
+  align-items: center; /* Centra la foto y el botón horizontalmente */
+  margin-bottom: 30px; /* Espacio antes de los campos de texto (Nombre/Email) */
+}
+
+/* Círculo de previsualización: Seleccionamos el <div> con clase 'avatar-preview' */
+.avatar-preview {
+  width: 120px; /* Ancho fijo para el círculo */
+  height: 120px; /* Alto fijo igual al ancho para que sea un cuadrado perfecto */
+  border-radius: 50%; /* ¡CLAVE!: Convierte el cuadrado en un círculo perfecto */
+  overflow: hidden; /* Corta la imagen para que respete la forma circular */
+  border: 4px solid #f0f0f0; /* Un borde grueso gris claro que actúa como marco */
+  margin-bottom: 15px; /* Espacio entre el círculo y el botón de "Cambiar Foto" */
+}
+
+/* Imagen dentro del círculo: Seleccionamos <img> dentro de 'avatar-preview' */
+.avatar-preview img {
+  width: 100%; /* La imagen llena el ancho del círculo */
+  height: 100%; /* La imagen llena el alto del círculo */
+  object-fit: cover; /* Ajusta la imagen para que no se estire, llenando todo el círculo */
+}
+
+/* Input de archivo real: Seleccionamos el <input type="file"> */
+input[type="file"] {
+  display: none; /* Escondemos el botón original del navegador porque no se puede estilar bien */
+}
+
+/* Botón de subida falso: Seleccionamos el <label> con clase 'custom-file-upload' */
+.custom-file-upload {
+  background: #f1f2f6; /* Fondo gris suave */
+  padding: 8px 15px; /* Tamaño del botón */
+  border-radius: 20px; /* Bordes redondeados estilo píldora */
+  font-size: 0.85rem; /* Letra pequeña y elegante */
+  color: #57606f; /* Color de texto gris azulado */
+  cursor: pointer; /* Indica que se puede hacer clic (se vincula al input oculto por el ID) */
+  transition: all 0.3s; /* Suaviza el cambio de color al pasar el ratón */
+}
+
+/* Hover del botón de foto */
+.custom-file-upload:hover {
+  background: #dfe4ea; /* Se oscurece un poco al pasar el ratón */
+}
+
+/* --- CAMPOS DEL FORMULARIO --- */
+
+/* Grupos de input: Seleccionamos el <div> con clase 'info-group' */
+.info-group {
+  margin-bottom: 15px; /* Separación vertical entre el nombre y el correo */
+}
+
+/* Etiquetas: Seleccionamos el <label> dentro de 'info-group' */
+.info-group label {
+  display: block; /* Ocupa su propia línea */
+  font-size: 0.85rem; /* Letra pequeña */
+  font-weight: 600; /* Texto en negrita suave */
+  color: #747d8c; /* Color gris para las etiquetas */
+  margin-bottom: 5px; /* Espacio antes del input */
+}
+
+/* Entradas de texto: Seleccionamos <input> de tipo texto y email */
+input[type="text"], input[type="email"] {
+  width: 100%; /* Ocupa todo el ancho de la tarjeta */
+  padding: 12px; /* Espacio interno para escribir cómodamente */
+  border: 1px solid #dcdde1; /* Borde sólido gris */
+  border-radius: 10px; /* Esquinas redondeadas */
+  box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
+}
+
+/* --- BOTONES Y ALERTAS --- */
+
+/* Botón Guardar: Seleccionamos el <button> con la clase 'btn-save' */
+.btn-save {
+  background: #2ecc71; /* Verde esmeralda para indicar éxito/guardado */
+  color: white; /* Texto blanco */
+  border: none; /* Sin borde */
+  padding: 12px 20px; /* Tamaño del botón */
+  border-radius: 10px; /* Esquinas redondeadas igual que los inputs */
+  font-weight: bold; /* Texto resaltado */
+  cursor: pointer; /* Icono de mano */
+  width: 100%; /* Hace que el botón sea ancho para que sea fácil de presionar */
+  margin-bottom: 15px; /* Espacio antes del link de volver */
+}
+
+/* Hover del botón guardar */
+.btn-save:hover {
+  background: #27ae60; /* Verde más oscuro */
+}
+
+/* Enlace Volver: Seleccionamos el <a> con clase 'back-link' */
+.back-link {
+  display: block; /* Ocupa su propia línea para centrarse bien */
+  text-align: center; /* Centra el texto "Volver" */
+  color: #a4b0be; /* Color gris suave */
+  text-decoration: none; /* Sin subrayado */
+  font-size: 0.9rem; /* Letra legible */
+}
+
+/* --- SISTEMA DE MENSAJES (ALERTAS) --- */
+
+/* Cuadro de alerta: Seleccionamos el <div> con clase 'alert' */
+.alert {
+  padding: 10px; /* Espacio interno del mensaje */
+  border-radius: 8px; /* Bordes redondeados */
+  margin-bottom: 20px; /* Separa el mensaje de los campos de abajo */
+  text-align: center; /* Centra el mensaje de texto */
+  font-size: 0.9rem; /* Letra pequeña informativa */
+}
+
+/* Alerta de éxito: Aplicada cuando isError() es false */
+.alert-success { 
+  background: #dff9fb; /* Fondo azul/celeste muy pálido */
+  color: #0984e3; /* Texto azul fuerte para contraste */
+}
+
+/* Alerta de error: Aplicada cuando isError() es true */
+.alert-danger { 
+  background: #ffeaa7; /* Fondo amarillento (tipo advertencia) */
+  color: #d63031; /* Texto rojo para resaltar el error */
+}

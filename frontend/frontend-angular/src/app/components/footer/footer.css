@@ -1,0 +1,72 @@
+/* --- PIE DE PÁGINA (FOOTER) --- */
+
+/* Contenedor principal: Seleccionamos la etiqueta <footer> con la clase 'footer' */
+.footer {
+  background-color: #ffffff; /* Fondo blanco para mantener la limpieza visual */
+  border-top: 1px solid #f0f0f0; /* Línea divisoria superior muy sutil */
+  padding: 40px 0 20px 0; /* 40px arriba para dar aire, 20px abajo para el cierre */
+  margin-top: 50px; /* Separa el footer del contenido principal (cards o formularios) */
+  color: #2c3e50; /* Color de texto gris azulado oscuro */
+}
+
+/* Contenido interno: Seleccionamos el <div> con clase 'footer-content' */
+.footer-content {
+  max-width: 1200px; /* Limita el ancho del contenido en pantallas muy grandes */
+  margin: 0 auto; /* Centra el bloque de contenido horizontalmente */
+  /* --- SISTEMA DE REJILLA RESPONSIVA --- */
+  display: grid; /* Activa el modelo Grid para organizar las columnas */
+  /* 'auto-fit' y 'minmax' hacen que las columnas se acomoden solas:
+     si no caben de 200px, saltan a la siguiente línea automáticamente */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px; /* Espacio de 30px entre cada sección del footer */
+  padding: 0 20px; /* Margen interno a los lados para que no pegue a los bordes */
+}
+
+/* --- ESTILOS DE SECCIÓN --- */
+
+/* Título de marca: Seleccionamos el <h3> dentro de 'footer-section' */
+.footer-section h3 {
+  color: #3498db; /* Usamos el azul de la marca para el nombre de la tienda */
+  margin-bottom: 15px; /* Espacio antes del párrafo descriptivo */
+}
+
+/* Títulos secundarios: Seleccionamos los <h4> (Enlaces y Contacto) */
+.footer-section h4 {
+  margin-bottom: 15px; /* Espacio uniforme bajo los encabezados */
+  font-size: 1.1rem; /* Tamaño ligeramente destacado */
+}
+
+/* Textos informativos: Seleccionamos <p> y <span> dentro de las secciones */
+.footer-section p, .footer-section span {
+  font-size: 0.9rem; /* Letra pequeña para información de apoyo */
+  color: #7f8c8d; /* Gris suave para no distraer demasiado */
+  display: block; /* Cada elemento ocupa su propia línea */
+  margin-bottom: 8px; /* Separación vertical entre líneas de texto */
+}
+
+/* Enlaces del Footer: Seleccionamos los <a> dentro de 'footer-section' */
+.footer-section a {
+  display: block; /* Los links se apilan verticalmente */
+  color: #7f8c8d; /* Color gris inicial */
+  text-decoration: none; /* Quitamos el subrayado */
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  transition: color 0.3s; /* Animación suave para el cambio de color */
+}
+
+/* Hover de enlaces: Cuando el usuario pasa el ratón sobre un link */
+.footer-section a:hover {
+  color: #3498db; /* Cambia al azul de la marca para indicar interactividad */
+}
+
+/* --- BARRA INFERIOR DE CRÉDITOS --- */
+
+/* Sección final: Seleccionamos el <div> con clase 'footer-bottom' */
+.footer-bottom {
+  text-align: center; /* Centra el texto del copyright */
+  margin-top: 40px; /* Espacio arriba para separarlo de las columnas */
+  padding-top: 20px; /* Espacio interno sobre la línea divisoria */
+  border-top: 1px solid #f9f9f9; /* Línea divisoria interna casi invisible */
+  font-size: 0.85rem; /* Letra muy pequeña para los créditos técnicos */
+  color: #bdc3c7; /* Gris muy claro para los créditos */
+}

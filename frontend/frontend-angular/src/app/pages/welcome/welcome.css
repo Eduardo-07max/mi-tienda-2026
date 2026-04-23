@@ -1,0 +1,179 @@
+/*esta clase hero-container pertenece al contenedor div padre que contiene todos nuestros elementos*/
+.hero-container {
+  position: relative;/*Colocar position relative nos sirve para que este contendor sirva como 
+  referencia a sus hijos para que se queden dentro de sus limites y no en los del navegador*/
+  height: calc(100vh); /*Aqui lo que hacemos es que  nuestro contenedor hero container ocupe el 100%
+  del alto de nuestra pantalla actual */
+  display: flex; /*nos sirve para aplicarle el stilo flex nuestros elementos se colocan uno al lado
+  de los otros */
+  align-items: center;/*centra el contendido de forma vertical*/
+  justify-content: center;/*Centra el contenido de forma horizontal*/
+  overflow: hidden;/*Esta propiedad evita que la imagen texto o cualquier cosa que pueda llegar a 
+  sobresalir no sobre salga */
+  font-family: 'Segoe UI', Roboto, sans-serif;/*Damos un tipo de letra*/
+}
+
+/* Aqui estamos seleccionando a nuestro contenedor div que contine a nuestra imagen y a 
+nuestro otro div que tiene la clase hero-overlay */
+.hero-background {
+  position: absolute;/*Colocamos absolute para que este contendor flote libremente flotara pero sobre
+  el contendor padre ya que el padre tiene position relative*/
+  top: 0;/*Aqui nos aseguramos que este contendor empiece desde arriba*/
+  left: 0;/*Aqui nos aseguramos que este contendor empiece desde la izquierda y justos letf y top 0 
+  hacen que nuestra imagen empiece desde la esquina superior izquierda*/
+  width: 100%;/*Le damos un ancho de 100%*/
+  height: 100%;/*Le damos una altura de 100% juntas estas dos cosas hacen que nuestra imagen ocupe el
+  mismo ancho y largo que nuestro contenedor padre*/
+  z-index: -1;/*z-index -1 estamos mandando nuestro contenedor a la parte trasera o a la capa trasera*/
+}
+/*aqui estamos selecionando a nuestra imagen*/
+.bg-image {
+  width: 100%;/*Le damos un ancho del 100% para que ocupe todo el ancho del contenedor hero-background
+  que a su vez este esta ocupando todo el ancho y largo del contendor padre*/
+  height: 100%;/*Para que ocupe todo el alto del contendor hero-background*/
+  object-fit: cover;/*Cover nos sirve para que la imagen al ocupar todo el ancho y alto de un contenedor
+  esta no se deforme */
+  filter: brightness(0.6); /* Oscurece un poco la imagen para que se lea el texto 1 es la imagen 
+  con su tono original al tener 0.6 la estamos oscureciendo*/
+}
+
+/* El degradado colorido que deja ver la imagen */
+.hero-overlay {
+  position: absolute;/*Le decimos que este contendor flotara libremente sobre el contenedor padre*/
+  top: 0;/*Iniciara hasta la parte de arriba a la izquierda gracias a top 0 left 0*/
+  left: 0;
+  width: 100%;/*Ocupara un ancho del 100% */
+  height: 100%;/*Ocupara un alto del 100%*/
+  background: linear-gradient(
+    135deg, /*El color va de la esquina superior izquierda hasta la esquina inferior derecha*/
+    rgba(52, 152, 219, 0.85) 0%,   /* empieza con Azul de tu marca */
+    rgba(155, 89, 182, 0.7) 50%,    /* en medio con Púrpura colorido */
+    rgba(46, 204, 113, 0.6) 100%    /* al final con Verde de tus botones */
+  );
+}
+
+/* Contenido aqui seleccionamos al div que contiene todos nuestros titulos textos, parrafos, botones
+,etc.*/
+.hero-content {
+  max-width: 900px; /*Le damos un ancho de 900px esto con el objetivo de evitar tener lienas de 
+  texto muy alargadas que son cansadas para la vista*/
+  text-align: center;/*Centramos nuestros textos*/
+  color: white;/*Le damos un color blanco a nuestros textos*/
+  padding: 20px;/*Este contenedor tendra un padding de 20px*/
+  animation: fadeInUp 2s ease-out;/*Agregamos una animacion de 1s de duracion y ease-out empieza 
+  rapido la animacion y termina lento*/
+}
+/*Le damos una animacion al texto llamada fadeInUp */
+@keyframes fadeInUp {
+  /*Nuestra animacion inicia con apacity 0 osea el texto invisible y con translate y (30px) lo 
+  que hace que el texto este 30px abajo de su posicion original*/
+  from { opacity: 0; transform: translateY(30px); }
+  /*Ahora al terminar la animacion el texto vuelve a aparecer con opacity 1 y devolvemos al texto 
+  a su posicion original traslateY(0)*/
+  to { opacity: 1; transform: translateY(0); }
+}
+/*Estamos selecionando al contendor div que tiene el texto Nueva Coleccion*/
+.badge-new {
+  display: inline-block;/*Le estamos diciendo al contenedor que solo mida lo que mide el texto*/
+  background: rgba(255, 255, 255, 0.2);/*Le damos un fondo gris con solo un 0,2 de opacidad
+  es decir se vera transparente*/
+  padding: 8px 20px;/*Tendra un padding superior e inferior de 8px un pddindg derecho y izquierdo de
+  20px */
+  border-radius: 30px; /*El borde de 30px para redondear nuestro contenedor*/
+  font-size: 0.9rem; /*Le damos un tamaño de letra relativo*/
+  font-weight: 600;/*Hace la letra ligeramente negrita*/
+  backdrop-filter: blur(5px); /*Pone borroso lo que esta detras de nuestro div*/
+  margin-bottom: 25px;/*le damos un margen inferior de 25px*/
+  border: 1px solid rgba(255, 255, 255, 0.3);/*Le damos un borde de un color gris muy claro*/
+}
+/*Selecionamos nuestro h1*/
+h1 {
+  font-size: 4rem;/*Damos un tamaño de letra relativo 4 veces mas grande */
+  font-weight: 800;/*Damos un grosor a la letra*/
+  line-height: 1.1;/*Damos una separcion entre textos de */
+  margin-bottom: 25px;/*Damos un margen de 25px*/
+  text-shadow: 0 4px 10px rgba(0,0,0,0.2);/*Le damos un sombreado que cae 4px hacia abajo 10px el grado
+  de difuminacion y con un color negro*/
+}
+/*Aqui seleccionamos a nuestro spam que esta dentro de nuestro h1*/
+.text-gradient {
+  background: linear-gradient(to right, #fff, #ffeaa7);/*Nos sirve para agregar un degradado 
+  a nuestro texto to right el degrado viaja de izquierda a derecha */
+  -webkit-background-clip: text; /*Cortamos el fondo siguiendo la silueta de las letras */
+  -webkit-text-fill-color: transparent;/*Volvemos transparanetes las letras para ver el degradado*/
+}
+/*Aqui selecionamos nuestros parrafos*/
+p {
+  font-size: 1.25rem; /*Damos un tamaño de letra realtiva ligeramnete mas grande*/
+  opacity: 0.9;/*Transparentamos nuestras letras*/
+  margin-bottom: 40px;/*Damos un margen inferior de 40px*/
+  line-height: 1.6;/*Damos una ligera separcion entre renglones*/
+}
+
+/* Seleccionamos al contenedor div que tiene nuestros botones */
+.hero-actions {
+  display: flex; /*Con esta propiedad nuestros botones se acomodaran uno al lado del otro si el ancho
+  se los permite*/
+  gap: 20px; /*Crea un espacio de 20px entre botones*/
+  justify-content: center; /*Colocamos nuestros botones al centro*/
+  margin-bottom: 60px; /*Damos un margen bajo de 60px*/
+}
+/*Aqui estamos selecioando a nuestro boton de registrarse*/
+.btn-primary {
+  background-color: #2ecc71; /*Le damos un color de fondo verde*/
+  color: white;/*Color de letra blanco*/
+  border: none;/*Le quitamos el borde*/
+  padding: 18px 35px;/*damos un padding arriba y hacia abajo de 18px y los lados de 35px*/
+  border-radius: 15px;/*Redondeamos las esquinas de nuestro boton*/
+  font-size: 1.1rem;/*Damos un tamaño de letra relativo ligeramnte mas grande*/
+  font-weight: bold; /*Hacemos negrita nuestra letra*/
+  cursor: pointer; /*Agregamos cursor pointer para que cuando pasemos el puntero se convierta en manita*/
+  transition: all 0.3s;/*Agregamos una transicion donde a cualquier cambio tarde 0.3 segundos en 
+  reflejar ese cambio*/
+  box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3); /*Le damos una sombre de color verde que cae
+  10px hacia abajo y una difunacion de 20px*/
+}
+
+/*Con la pseudoclase hover que quiere decir cuando estes sobre el elemento haz esto*/
+.btn-primary:hover {
+  background-color: #27ae60; /*Daremos un color de fondo un poco mas fuerte*/
+  transform: translateY(-3px); /*el boton subira 3px hacia arriba*/
+  box-shadow: 0 15px 25px rgba(46, 204, 113, 0.4);/*La sombra sera mas grande hacia abajo y mas
+  difuminada*/
+}
+/*Aqui estamos seleccionando nuestro boton de iniciar sesion*/
+.btn-secondary {
+  background-color: transparent;/*Le damos un color transparente */
+  color: white;/*Le damos un color de letra blanco*/
+  border: 2px solid white;/*Le damos un borde de 2px solido de color blanco*/
+  padding: 18px 35px;/*le damos un padding superior e inferior de 18px y a los lados de 35px*/
+  border-radius: 15px;/*Redondeamos las esquinas de nuestro boton*/
+  font-size: 1.1rem;/*Le damos un tamaño de letra ligeramente mas grande*/
+  font-weight: bold;/*Grosor de letra*/
+  cursor: pointer;/*Para que aparezca la manita al tocar el boton*/
+  transition: all 0.3s;/*agregamos una trancion que dure 0.3 segundos a cualquier cambio*/
+}
+/*Aqui agregamos la pseudclase hover donde al pasar por encima del boton el fondo de este cambiara
+a un gris */
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Este contenedor div contiene otros tres divs con texto y iconos */
+.hero-features {
+  display: flex;/*Nuestros contenedores divs estaran uno al lado del otro*/
+  justify-content: center; /*Estaran  centrados*/
+  gap: 50px;/*Tendran una separacion de 50px entre cada uno de ellos*/
+}
+/*Aqui selecionamos a nuestros 3 dvis que contiene cada uno dos spam*/
+.feature-item {
+  display: flex; /*Acomodamos nuestros spam uno al lado del otro*/
+  align-items: center; /*Los centramos*/
+  gap: 10px;/*damos una separacion entre spams de 10px cada uno*/
+  font-size: 1rem; /*tamaño de letra relativa */
+  font-weight: 500;/*grosor*/
+}
+
+.feature-icon {
+  font-size: 1.5rem; /*Hacemos a nuestros iconos ligeramente mas grandes*/
+}

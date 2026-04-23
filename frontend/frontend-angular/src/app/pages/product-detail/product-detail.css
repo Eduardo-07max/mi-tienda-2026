@@ -1,0 +1,176 @@
+/* --- CENTRADO Y CONTENEDOR RAÍZ --- */
+
+/* Contenedor principal: Seleccionamos el <div> con la clase 'main-container' */
+.main-container {
+  display: flex; /* Activa Flexbox para alinear la tarjeta de detalle */
+  justify-content: center; /* Centra la tarjeta horizontalmente (eje X) */
+  align-items: center; /* Centra la tarjeta verticalmente (eje Y) */
+  min-height: 85vh; /* Asegura que el contenedor ocupe al menos el 85% de la altura de la pantalla */
+  padding: 20px; /* Margen interno para que la tarjeta no toque los bordes en móviles */
+  /* Definimos una familia de fuentes moderna y legible para todo el contenido */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- LA TARJETA DE DETALLE --- */
+
+/* Tarjeta principal: Seleccionamos el <div> con la clase 'detail-card' que envuelve el @if(product()) */
+.detail-card {
+  background: #ffffff; /* Color de fondo blanco sólido */
+  width: 100%; /* La tarjeta se adapta al ancho disponible */
+  max-width: 550px; /* Evita que la tarjeta se estire demasiado, manteniendo la estética */
+  padding: 40px; /* Espacio generoso de 40px entre el borde y el contenido interno */
+  border-radius: 20px; /* Esquinas muy redondeadas para un look moderno y suave */
+  /* Sombra profunda para dar un efecto de que la tarjeta flota sobre el fondo */
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+  border: 1px solid #f0f0f0; /* Borde muy sutil para dar definición a la tarjeta */
+}
+
+/* --- SECCIÓN DE LA IMAGEN --- */
+
+/* Contenedor de imagen: Seleccionamos el <div> con la clase 'image-section' */
+.image-section {
+  width: 100%; /* Ocupa todo el ancho interno de la tarjeta */
+  height: 300px; /* Altura fija para que la tarjeta sea consistente */
+  border-radius: 15px; /* Redondea las esquinas del área de la imagen */
+  overflow: hidden; /* Corta cualquier parte de la imagen que intente salirse */
+  margin-bottom: 25px; /* Separa la imagen del título y la información inferior */
+  background: #f9f9f9; /* Fondo gris claro para cuando no hay imagen o está cargando */
+  border: 1px solid #f0f0f0; /* Contorno ligero para el área de imagen */
+}
+
+/* Imagen del producto: Seleccionamos la etiqueta <img> dentro de 'image-section' */
+.image-section img {
+  width: 100%; /* La imagen intenta ocupar todo el ancho */
+  height: 100%; /* La imagen intenta ocupar todo el alto */
+  /* 'contain' ajusta la imagen para que se vea COMPLETA sin recortarla, ideal para detalles */
+  object-fit: contain; 
+}
+
+/* --- CABECERA E INFORMACIÓN TEXTUAL --- */
+
+/* Etiqueta de categoría: Seleccionamos el <span> con la clase 'badge' */
+.badge {
+  background: #f1f2f6; /* Fondo gris azulado muy suave */
+  color: #57606f; /* Color de texto gris oscuro */
+  padding: 5px 12px; /* Espacio interno para que parezca una pastilla/etiqueta */
+  border-radius: 50px; /* Bordes totalmente circulares */
+  font-size: 0.75rem; /* Tamaño de letra pequeño */
+  font-weight: bold; /* Resalta el texto en negrita */
+  text-transform: uppercase; /* Convierte el texto automáticamente a MAYÚSCULAS */
+}
+
+/* Título del producto: Seleccionamos la etiqueta <h1> */
+h1 {
+  font-size: 2.2rem; /* Tamaño de letra grande y jerárquico */
+  color: #2f3542; /* Color de texto casi negro */
+  margin: 15px 0 5px 0; /* Margen: 15px arriba, 0 lados, 5px abajo (hacia el autor) */
+}
+
+/* Autor de la publicación: Seleccionamos el elemento <p> con clase 'author' */
+.author {
+  color: #a4b0be; /* Gris claro para indicar que es información secundaria */
+  font-size: 0.85rem; /* Tamaño de letra reducido */
+  margin-bottom: 20px; /* Espacio antes de entrar a la descripción/precio */
+  display: block; /* Asegura que ocupe su propia línea */
+}
+
+/* Grupos de información: Seleccionamos los <div> con clase 'info-group' */
+.info-group {
+  margin-bottom: 25px; /* Separa cada bloque de información (Precio de Descripción) */
+}
+
+/* Etiquetas de datos: Seleccionamos la etiqueta <label> dentro de 'info-group' */
+.info-group label {
+  display: block; /* El label aparece arriba del dato */
+  color: #a4b0be; /* Color gris para el nombre del campo */
+  font-size: 0.9rem; /* Letra pequeña */
+  font-weight: 600; /* Grosor de letra semi-negrita */
+  margin-bottom: 5px; /* Espacio entre el nombre del campo y el valor */
+}
+
+/* Resalte del precio: Seleccionamos el elemento <p> con clase 'price-highlight' */
+.price-highlight {
+  font-size: 2rem; /* Tamaño de fuente muy grande para destacar el costo */
+  font-weight: bold; /* Negrita total */
+  color: #2ecc71; /* Color verde esmeralda (éxito/dinero) */
+  margin: 0; /* Quitamos márgenes para control manual del contenedor */
+}
+
+/* Texto de descripción: Seleccionamos el elemento <p> con clase 'description-text' */
+.description-text {
+  font-size: 1.1rem; /* Letra ligeramente más grande para facilitar la lectura */
+  color: #57606f; /* Gris oscuro para el cuerpo del texto */
+  line-height: 1.6; /* Aumenta el espacio entre líneas para que sea más cómodo leer */
+}
+
+/* --- ACCIONES Y BOTONES --- */
+
+/* Contenedor de acciones: Seleccionamos el <div> con clase 'card-actions' */
+.card-actions {
+  display: flex; /* Activa Flexbox para alinear botones y link */
+  flex-direction: column; /* Por defecto (móvil), los botones se apilan uno sobre otro */
+  gap: 15px; /* Espacio entre los botones */
+  margin-top: 30px; /* Separa las acciones de la información del producto */
+  border-top: 1px solid #f1f2f6; /* Línea divisoria superior gris muy clara */
+  padding-top: 25px; /* Espacio entre la línea divisoria y los botones */
+}
+
+/* Media Query: Se activa cuando la pantalla mide 480px o más */
+@media (min-width: 480px) {
+  .card-actions {
+    flex-direction: row; /* Cambia la dirección a horizontal (uno al lado del otro) */
+    align-items: center; /* Alinea verticalmente los botones y el enlace */
+  }
+}
+
+/* Botón Editar: Seleccionamos el <button> con clase 'btn-edit' */
+.btn-edit {
+  background-color: #3498db; /* Color azul para edición */
+  color: white; /* Letras blancas */
+  border: none; /* Quita borde de fábrica */
+  padding: 10px 20px; /* Tamaño del botón */
+  border-radius: 8px; /* Esquinas redondeadas */
+  font-weight: bold; /* Texto resaltado */
+  cursor: pointer; /* Icono de mano */
+  transition: background 0.3s; /* Suaviza el cambio de color al pasar el ratón */
+}
+
+/* Efecto hover Editar */
+.btn-edit:hover { background-color: #2980b9; } /* Azul más oscuro */
+
+/* Botón Borrar: Seleccionamos el <button> con clase 'btn-delete' */
+.btn-delete {
+  background-color: #e74c3c; /* Color rojo para peligro/borrado */
+  color: white; /* Letras blancas */
+  border: none; 
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* Efecto hover Borrar */
+.btn-delete:hover { background-color: #c0392b; } /* Rojo más oscuro */
+
+/* Enlace de volver: Seleccionamos la etiqueta <a> con clase 'back-link' */
+.back-link {
+  text-decoration: none; /* Quita el subrayado azul */
+  color: #747d8c; /* Color gris suave */
+  font-size: 0.95rem; /* Tamaño de fuente estándar */
+  margin-left: auto; /* Empuja el enlace hacia la derecha cuando el flex está en fila */
+}
+
+/* Efecto hover del enlace */
+.back-link:hover {
+  color: #2f3542; /* Se vuelve más oscuro al pasar el ratón */
+  text-decoration: underline; /* Aparece el subrayado para indicar interactividad */
+}
+
+/* --- ESTADO DE CARGA --- */
+
+/* Contenedor de carga: Seleccionamos el <div> con clase 'loading-state' */
+.loading-state {
+  text-align: center; /* Centra el spinner y el texto */
+  color: #a4b0be; /* Color gris claro para el mensaje de espera */
+}

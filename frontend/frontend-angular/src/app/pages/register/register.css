@@ -1,0 +1,143 @@
+/* Seleccionamos al contenedor padre */
+.auth-wrapper {
+  display: flex;/*Colocamos display flex para colocar los elementos uno al lado del otro*/
+  justify-content: center; /*Centramos el formulario de forma horizontal*/
+  align-items: center;/*Centramos el formulario de forma vertical*/
+  min-height: 100vh; /* El contenedor medira el 100% del alto de la ventana*/
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);/*El contenedor tendra un degradado que inicia desde la esquina superior izquierda hasta la linea inferior derecha empezando en blanco termiando en gris claro*/
+  padding: 40px 20px;/*Le damos un padding de 40px arriba y abajo y a los lados de 20px*/
+}
+/*Aqui estamos seleccionando al contenedor div que contiene el titulo y el formulario*/
+.auth-container {
+  background: white; /*Le damos un fondo blanco*/
+  width: 100%;/*Le decimos que ocupe un ancho del 100%*/
+  max-width: 450px; /* El ancho maximo que puede alcanzar es de 100% */
+  padding: 40px; /*Le damos un padding de 40px a todos sus lados*/
+  border-radius: 25px;/*Redondeamos las esquinas de nuestro contenedor*/
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1); /*Le damos un sombreado */
+  text-align: center;/*Los textos deben ir centrados no centra los elementos que esten dentro de otros divs*/
+  animation: slideIn 0.6s ease-out; /*Agregamos una animacion llamada slideIn que dura 0.6 sefundos y ease-out indica que empieza rapido y se va deteniendo suavemente*/
+}
+/*Esta coreografia sirve para que nuestra trajeta de contiene el formulario de la sencion de aparecer desde abajo*/
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }/*From nos indica como inicia nuestra formulario en este caso inicia invicible con la opacidad en 0 y 20px abajo */
+  to { opacity: 1; transform: translateY(0); }/*to nos indica como termina en este caso termina con su opacidad original es decir la lo podemos ver y vuelve a su posicion original*/
+}
+/*Aqui estamos selecionando el titulo de nuestro formulario */
+h2 {
+  color: #2c3e50;/*Le damos un color gris oscuro a la letra */
+  font-size: 1.8rem;/*Un tamano de letra relativa ligeramente mas grande*/
+  margin-bottom: 10px; /*Un margen bajo de 10px*/
+  font-weight: 800;/*Grosor de letra*/
+}
+/*Aqui selecionamos el parrafo que esta dentro de nuestro div con la clase auth-container*/
+.auth-container > p {
+  color: #7f8c8d;/*Le damos un color de letra gris*/
+  margin-bottom: 30px;/*Un margen infierior de 30px*/
+  font-size: 0.95rem;/*Un tamaño de letra realtiva ligeramente mas pequeño*/
+}
+
+/* Aqui estamos selecionando los contenedores div que contiene la pareja de input y label*/
+.form-group {
+  text-align: left;/*Alineamos los textos hacia la izquierda*/
+  margin-bottom: 18px;/*Damos un margen de 18 px en la parte de abajo*/
+}
+/*Aqui estamos selecionando todas nuestras etiquetas label*/
+label {
+  display: block;/*Se colocaran una debajo de otros los elementos label gracias a display block*/
+  font-size: 0.85rem;/*El tamaño de letra sera ligeramente mas pequeño*/
+  font-weight: 700; /* El grosor de letra */
+  color: #34495e;/*Damos un color de letra*/
+  margin-bottom: 6px;/*Damos un margen inferior de 6px */
+  margin-left: 4px;/*Damos un margen izquierdo de 4px*/
+}
+/*Aqui estamos selecionando a todos los inputs menos los de tipo archivo */
+input:not([type="file"]) {
+  width: 100%; /*Le decimos a los inputs que ocupen un ancho del 100%*/
+  padding: 12px 15px; /*Tendran un padding superior e inferior de 12px arriba y abajo */
+  border: 2px solid #edf2f7; /*Le damos un borde de 2px solid color gris claro*/
+  border-radius: 12px; /*Redondeamos las esquinas de nuestros inputs*/
+  font-size: 0.95rem;/*Le damos un tamaño de letra relativa ligeramente mas pequeño*/
+  transition: all 0.3s; /*Le agregamos una trancion que tardara 0.3 segundos en hacerce y afectara acualquier cambio que se efectue*/
+  box-sizing: border-box; /*Sirve para que nuestros inputs no se salgan de lo establecido si le dimos ancho 100% y un padding de 15px a los lados estos se sumaran y se saldran pero con esta propiedad hacemos que se quede dentro del ancho */
+}
+/*Volvemos a seleccionar los inputs y le añadimos la pseudoclase focus que quiere decir que estamos dentro de algun input*/
+input:focus {
+  outline: none;/*Quitamos el borde por defecto*/
+  border-color: #2ecc71; /*Damos un color nuevo al borde */
+  box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.1); /*aplicamos una sombra al input*/
+}
+
+/* Estilo para el input de archivo */
+.input-file {
+  width: 100%; /*Damos un ancho del 100%*/
+  padding: 8px;/*agregamos un padding de 8px a todos sus lados*/
+  background: #f8f9fa; /*Sera color blanco*/
+  border-radius: 8px; /*Redondeamos los bordes*/
+  border: 2px dashed #cbd5e0; /*Damos un borde gris claro tipo dashed de 2px */
+  cursor: pointer; /*esta propiedad hace que cuando estamos encima del input el puntero cambie a la manita*/
+  font-size: 0.85rem; /*damos un tamaño de letra relativo un poco mas pequeño*/
+}
+/*Aqui estamos selecionando la etiqueta small*/
+small {
+  display: block; /*sera de este tipo para que se acomode uno encima de otro*/
+  margin-top: 5px; /*Damos un margen superior de 5px*/
+  color: #a0aec0; /*el color de letra*/
+  font-size: 0.75rem; /*el tamaño de letra*/
+}
+
+/* Botón de Registro */
+.btn-register {
+  width: 100%; /*El boton ocupara un ancho del 100%*/
+  padding: 15px; /*tendran un padding en todos sus lados de 15px*/
+  background: linear-gradient(to right, #2ecc71, #27ae60); /*Tendra un background o un fondo de que empieza de la izquierda con un verde claro y termina en un verde mas fuerte a la derecha*/
+  color: white;/*La letra sera de color blanco*/
+  border: none; /*Le quitamos el borde*/
+  border-radius: 12px; /*Redondeamos el boton*/
+  font-size: 1.1rem; /*damos un tamaño de letra relativo un poco mas grande*/
+  font-weight: 700;/*Un grosor de letra*/
+  cursor: pointer;/*para que el puntero cambie a manita*/
+  transition: all 0.3s;/*agregamos una transicion de 0.3 segundos que se active con cualquier cambio*/
+  margin-top: 20px; /*damos un margen superior de 20px*/
+  box-shadow: 0 5px 15px rgba(46, 204, 113, 0.2); /*agregamos una sombra*/
+}
+/*aqui estamos seleccioando nuestro boton de nuevo donde con hover que es cuando estamos encima del boton se aplique este cambio pero solo si el boton no esta en disabled*/
+.btn-register:hover:not(:disabled) {
+  transform: translateY(-2px); /*los subimos 2px ahacia arriba*/
+  box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
+  filter: brightness(1.05);/*aunmentamos el brillo del boton un 20%*/
+}
+/*Cuando nuestro boton este diabled tendra estos estilos*/
+.btn-register:disabled {
+  background: #bdc3c7;/*sera color gris claro*/
+  cursor: not-allowed; /*cuando pasas por encima del boton en este estado el cursor cambia a un circulo tachado*/
+  box-shadow: none;/*qquita cualquier sobra o estado extra que le añamos puesto*/
+}
+
+/* Estamos slecionando el contenedor div con nuestro mensaje de error */
+.alert-error {
+  background-color: #fff5f5; /*tenrda un fondo de ester color*/
+  color: #e74c3c; /*Un color de letra rojo*/
+  padding: 12px; /*un poadding en todos sus lados de 12px*/
+  border-radius: 10px; /*estara redondeado el contenedor*/
+  font-size: 0.85rem; /*su tamaño de letra*/
+  margin-bottom: 25px; /*tendra un margen inferior de 25 px*/
+  border: 1px solid #feb2b2; /*Tendra un borde solido color rosa*/
+}
+
+/* Estamos seleccioando el parrafo que esta al final de nuestro formulario*/
+.footer-text {
+  margin-top: 30px; /*Tendra un margen superior de 30px*/
+  color: #95a5a6; /*color gris*/
+  font-size: 0.9rem;/*tamaño de letra*/
+}
+/*estamos seleccionando a nuestro enlace que esta dentro de nuestro parrafo*/
+.footer-text a {
+  color: #3498db;/*color de letra*/
+  text-decoration: none;/*le quitamos la linea blanca del enlace*/
+  font-weight: 700; /*grosor de letra*/
+}
+/*Agregamos una pseudoclase hover que quiere decir que estamos sobre el elemento*/
+.footer-text a:hover {
+  text-decoration: underline; /*Al estar sobre el elemento lo que haremos sera mostrar la linea baja tipica de los enlaces*/
+}

@@ -1,0 +1,58 @@
+<!--Agregamos una condicion donde si showNavbar da true si se mostrara nuestro navbar solo en las vistas que no excluimos-->
+@if (showNavbar()) {
+<!--Usamos la etiqueta nav que a diferncia de div este elemento nav indica que aqui van existir enlaces o un menu-->
+  <nav class="navbar">
+    <!--Dentro de este div colocamos dos spam uno con un icono de carrito de super y otro con un texto que dice Mi tienda este div ademas es un enlace que al pulsarlo nos redirije a a products es decir donde estan todos mis productos y una clase llamada logo para estilos posteriormente en css-->
+    <div class="logo" routerLink="/products">
+      <span class="logo-icon">🛒</span> 
+      <span class="logo-text">Mi Tienda</span>
+    </div>
+<!--Ahora este div con la clase user-section contiene la imagen de usuario, nombre del usuario y el menu desplegable-->
+    <div class="user-section">
+      <!--Este div con la clase user-info contiene la imagen y el nombre de usuario-->
+      <div class="user-info">
+        <!--Este otro div con la clase avatar-wrapper contiene la imagen del usuario o la imagen por defecto dependiendo el caso-->
+        <div class="avatar-wrapper">
+<!--Aqui tenemos un bloque if donde esta preguntando currentUser es su propiedad image tiene algo dara true y nos mostrara la imagen del usuario logeado-->
+         @if (authService.currentUser()?.image) {
+    <img 
+      [src]="authService.userAvatar()" 
+      alt="Foto de perfil del usuario" 
+      class="nav-avatar"
+    >
+  } 
+<!--En caso contrario que esta propiedad no tenga nada significa que no tiene imagen de usuario por lo tanto mostrara la imagen por defecto-->
+  @else {
+    <img 
+      src="/images/default-avatar.avif" 
+      alt="Avatar por defecto" 
+      class="nav-avatar default-avatar"
+    >
+  }
+  <!--Div vacio con la clase status-indicator-->
+          <div class="status-indicator"></div>
+        </div>
+        <!--Aqui colocamos nuestra etiqueta span con la clase welcome-text para dar estilos -->
+        <span class="welcome-text">
+          <!--Aqui accedemos a la variable currentUser que tiene nuestros datos de usuario y accedemos a la propiedad name colocamos el ? ya que el valor en lo que llega puede estaria siendo null o undefined por que podria romper la app con el ? le decimos que puede ser null colocamos la etiqueta strong indicando que es un elemento importante por defecto strong da una letra mas gruesa-->
+          Hola, <strong>{{ authService.currentUser()?.name }}</strong>
+        </span>
+      </div>
+<!--Este contenedor div con la clase dropdown contiene nuestro boton y nuestro menu con algunas opciones para el usuario-->
+      <div class="dropdown">
+        <button class="dropbtn" (click)="toggleMenu()" [class.active]="menuVisible()">
+          Mi Cuenta <span class="arrow">▼</span>
+        </button>
+<!--Aqui tenemos un bloque if donde si menuVisible es true nos mostrara un contenedor div con 3 opciones la opcion de mi perfil que nos redirige a un formulario para editar algunos atributos de nuestro perfil la opcion de seguridad que nos permite ir a un formulario para cambiar la contraseña y por ultimo la opcion cerrar sesion que elimina al usuario logueado del localstorage-->
+        @if (menuVisible()) {
+          <div class="dropdown-content">
+            <a routerLink="/edit-profile" class="dropdown-link">👤 Mi Perfil</a>
+            <a routerLink="/change-password" class="dropdown-link">🔑 Seguridad</a>
+            <div class="divider"></div>
+            <button (click)="onLogout()" class="logout-link">🚪 Cerrar Sesión</button>
+          </div>
+        }
+      </div>
+    </div>
+  </nav>
+}

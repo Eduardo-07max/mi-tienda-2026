@@ -1,0 +1,79 @@
+<!--Colocamos este enlace para ir a la vista /add-product y le agregamos la clase 
+add-link para darle estilos en css -->
+<a routerLink="/add-product" class="add-link">➕ Agregar nuevo producto</a>
+
+<!--Colocamos el contenedor padre con la clase product-grid para aplicarle GRID en css y evitar
+que nuestros productos se amontonen unos con otros -->
+<div class="product-grid">
+  <!--Aqui creamos nuestro bucle for para recorrer nuestra señal o array, invocamos al array 
+  products() asi con parentesis y es como si llamaramos a la señal para que nos entregue los datos 
+  actuales por otro lado track product.id es obligatorio y le sirve al navegador para se super veloz
+  y ver que producto quitar o no dependiendo de su id
+  -->
+  @for (product of products(); track product.id) {
+    <!--Aqui tenemos nuestro contenedor div hijo que esta dentro de nuestro bucle for el cual contiene
+    las propiedades name,price y description del primer elemento de nuestro array products y que
+    gracias a nuestro bucle podremos visualizar todos nuestro productos con el mismo formato de html
+    que hemos definido ademas de que cada elemento contara con sus respectivos botones de ver, editar
+    y borrar  -->
+    <div class="product-card">
+      <!--Tenemos este contedor div con la clase product-image que contiene la imagen de nuestro producto-->
+    <div class="product-image">
+      <!--Con este if preguntamos si el objeto product.image tiene algo en la propiedad image entonces eso nos dara true y nos mostrara la imagen del usuario-->
+        @if (product.image) {
+          <!--Aqui colocamos la ruta base para acceder a esa imagen + el nombre especifico de la imagen-->
+          <img [src]="'http://localhost:8000/storage/productos/' + product.image" [alt]="product.name">
+          <!--En caso contrario nos mostrara nuestra imagen por defecto-->
+        } @else {
+          <img src="images/default-product.jpg" alt="Sin imagen">
+        }
+      </div>
+<!--Este contenedor if va la informacion del producto nombre, precio descripcion etc-->
+      <div class="product-info">
+        <!--Este h3 tiene produtc.name que tiene la porpiedad que contiene el nombre del producto-->
+  <h3>{{product.name}}</h3>
+  <!--Este parrafo contiene el nombre del usuario que creo este producto en caso de que no exista el usuario colocaremos usuario desconocido-->
+  <p class="author">👤 Creado por: <strong>{{product.user?.name || 'Usuario desconocido'}}</strong></p>
+  <!--Colocamos en otro parrafo la propiedad price que contiene el precio del producto-->
+  <p class="price">${{product.price}}</p>
+  <!--En otro parrafo colocamos la descripcion-->
+  <p class="description">{{product.description}}</p>
+</div>
+<!--Creamos nuestro contenedor con la clase actions para darle estilos posteriormente en css
+dentro de este contenemos creamos el boton Ver que contiene [routerLink]="['/product', product.id]
+esta ruta ruta nos redijire al componente product-detail que contiene una vista con los detalles del
+producto seleccionado es importante notar que le pasamos el id del producto sobre el cual estamos 
+para que en la vista a la que nos redirijimos nos muestre el producto con dicho id
+
+Boton editar: este boton nos redijire al componente edit-product que contiene un formulario donde
+podemos editar los campos name, price y description es necesario parasarle el id del producto en 
+el que estamos para editar el producto deseado
+
+Boton Borrar: el boton borrar tiene un evento click donde de igual forma le pasamos el id del 
+producto donde nuestra funcion deleteProduct(product.id) se invocara al hacer click y borrara 
+el producto que contiene el id que le pasamos como parametro.
+-->
+      <div class="actions">
+  <button class="btn-detail" [routerLink]="['/product', product.id]">Ver detalles</button>
+<!--Colocamos un bloque if para comprobar que el usuario logeado el igual al usuario que creo un producto si es asi este usuario podra ver los botones del editar y borrar esto permite que solo el usuario que crea un prodcuto lo pueda eliminar o editar-->
+  @if (product.user_id === authService.currentUser()?.id) {
+    <button class="btn-edit" [routerLink]="['/edit-product', product.id]">
+      Editar
+    </button>
+    <button class="btn-delete" (click)="deleteProduct(product.id)">
+      Eliminar
+    </button>
+  }
+</div>
+    </div>
+  }
+  <!--Esta @empty nos dice si el array produtcs esta vacio entonces haz esto-->
+  @empty {
+    <!--Aqui mostramos un mensaje que dice que no tenemos productos y un link para ir y crear nuevos productos-->
+    <div class="empty-state">
+      <div class="empty-icon">📦</div>
+      <p>Aún no hay productos disponibles. ¡Sé el primero en crear uno!</p>
+      <a routerLink="/add-product" class="add-link">Crear mi primer producto</a>
+    </div>
+  }
+</div>

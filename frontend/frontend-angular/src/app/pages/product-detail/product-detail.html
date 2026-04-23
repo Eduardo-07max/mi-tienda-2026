@@ -1,0 +1,66 @@
+<!--Este contenedor div con la clase main-container es el contendor padre-->
+<div class="main-container">
+  <!--Aqui vamos a envolver toda nuestra card con la imagen y informacion del producto dentro de un bloque if que esta preguntando si product es true osea tiene algo o es diferente de null-->
+  @if (product()) {
+    <!--Si cumplimos con la condicion mostramos esto-->
+    <!--Este div con la clase detail-card actuara como una carta que contendra la imagen y todos los demas atributos de nuestro producto-->
+    <div class="detail-card">
+      <!--Aqui colocamos un div con la clase image-section que contendra nuestra imagen del producto o nuestra imagen por defecto segun sea el caso-->
+      <div class="image-section">
+        <!--Colocamos un bloque if donde preguntamos si la propiedad image del signal product tiene algo es decir es diferente a null dara true y mostraremos la imagen del producto-->
+        @if (product().image) {
+          <!--Aqui con  nuestra etiqueta image mandamos llamar a la ruta donde esta nuestra imagen junto con el nombre exacto de la imagen para obtener exactamente la imagen deseada-->
+          <img [src]="'http://localhost:8000/storage/productos/' + product().image" alt="{{ product().name }}">
+          <!--En caso contario que la porpiedad image sea null nos mostrara la imagen por defecto-->
+        } @else {
+            <img src="/images/default-product.jpg" alt="Sin imagen">
+        }
+      </div>
+<!--Este contenedor div con la clase Info-section contiene los atributos del producto como el nombre, el precio y la descripcion-->
+      <div class="info-section">
+        <!--Tenemos este div con la clase card-header que contiene el nombre del producto y el usuario que creo ese producto-->
+        <div class="card-header">
+          <span class="badge">Detalle de Producto</span>
+          <!--Obtenemos el nombre del producto atrevez de nuestra signal-->
+          <h1>{{ product().name }}</h1>
+          <!--Obtenemos quien creo nuestro producto gracias a nuestra signal tambien-->
+          <p class="author">Publicado por: <strong>{{ product().user?.name || 'Usuario desconocido' }}</strong></p>
+        </div>
+
+        <!--Este div con la clase card-content tiene el precio del producto y la descripcion-->
+        <div class="card-content">
+          <div class="info-group">
+            <label>Precio</label>
+            <!--Obtenemos el precio de nuestro producto atravez de nuestra signal-->
+            <p class="price-highlight">${{ product().price }}</p>
+          </div>
+
+          <div class="info-group">
+            <label>Descripción</label>
+            <!--Obtenemos la descripcion de nuestro producto a travez de nuestra signal-->
+            <p class="description-text">{{ product().description }}</p>
+          </div>
+        </div>
+<!--Aqui tenemos un contenedor div con la clase card-actions  que contiene nuestros botones de editar, borrar y el boton de volver a la lista-->
+        <div class="card-actions">
+          <!--Aqui tenemos un bloque if que nos esta preguntando la propiedad user_id de nuestro signal es igual a la propiedad id de nuestro currentUser osea de nuestro usuario logueado si es asi muestra los botones de editar y borrar en caso contrario solo mostrara el boton de volver, esto permite que solo el usuario logueado pueda editar o borrar los productos que el creo-->
+          @if (product().user_id === authService.currentUser()?.id) {
+            <!--Boton editar que nos redirige al formulario editar donde le pasamos el id del producto-->
+            <button class="btn-edit" [routerLink]="['/edit-product', product().id]">✏️ Editar</button>
+            <!--Nuestro boton borrar donde al hacer click invoca al metodo deleteProduct y de parametro le pasamos el id de nuestro signal product-->
+            <button class="btn-delete" (click)="deleteProduct(product().id)">🗑 Borrar</button>
+          }
+          <!--Nuestro enlace para volver a la lista de productos-->
+          <a routerLink="/products" class="back-link">⬅️ Volver a la lista</a>
+        </div>
+      </div>
+
+    </div><!--Fin del contendor detail-card -->
+    <!--En caso de que el contendor product no tenga nada mostraremos este mensaje de cargando ya que aveces tarda en llegar los datos-->
+  } @else {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Cargando información del producto...</p>
+    </div>
+  }
+</div>

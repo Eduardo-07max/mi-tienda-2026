@@ -1,0 +1,49 @@
+<!--Colocamos todos nuestros elementos dentro de un contenedor div padre con la clase hero-container
+para poder dar estilos posteriormente -->
+<div class="hero-container">
+  <!--Contenedor para la imagen principal-->
+  <div class="hero-background">
+    <img src="images/productos.jpg" alt="Fondo de productos" class="bg-image">
+    <div class="hero-overlay"></div><!--Este div vacio va entre la imagen y el contenedor div 
+    hero-content-->
+  </div>
+<!--Este div va por encima de todo y contiene nuestros titulos botones y parrafos tiene la 
+clase hero content para dar estilos-->
+  <div class="hero-content">
+    <!--Colocamos un contenedor div con la clase badge-new para dar estilos y agregamos un texto-->
+    <div class="badge-new">🚀 Nueva Colección 2026</div>
+    <!--Agregamos un titulo-->
+    <h1>Gestiona tu inventario con <span class="text-gradient">Estilo y Precisión</span></h1>
+    <p>
+      Bienvenido a <strong>Mi Tienda</strong>. La plataforma más moderna para 
+      administrar tus productos, controlar tus ventas y hacer crecer tu negocio.
+    </p>
+<!--Dentro de este contenedor div con la clase hero-actions agregaremos nuestros botones que nos
+redirigen al formulario para registrar un usuario desde el boton que dice Empezar ahora — Es gratis y
+con el que dice Iniciar Sesion vamos a registrar sesion-->
+    <div class="hero-actions">
+      <button routerLink="/register" class="btn-primary">Empezar ahora — Es gratis</button>
+      <button routerLink="/login" class="btn-secondary">Iniciar Sesión</button>
+    </div>
+<!--Dentro de este div con la clase hero-features tendremos otros 3 divs que asu vez tendran un spam
+con un texto -->
+    <div class="hero-features">
+
+      <div class="feature-item">
+        <span class="feature-icon">⚡</span>
+        <span>Rápido</span>
+      </div>
+
+      <div class="feature-item">
+        <span class="feature-icon">🛡️</span>
+        <span>Seguro</span>
+      </div>
+
+      <div class="feature-item">
+        <span class="feature-icon">📈</span>
+        <span>Escalable</span>
+      </div>
+      
+    </div>
+  </div>
+</div>

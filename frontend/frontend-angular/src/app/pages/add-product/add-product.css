@@ -1,0 +1,139 @@
+/* Contenedor para centrar */
+/*Aqui seleccionamos nuestro contenedor padre*/
+.form-container {
+  display: flex;/*Colocamos display flex para que los elementos en lugar de colocarse uno debajo
+  del otro se coloquen al lado dependiendo del espacio dispoble en este caso como solo tenemos un
+  contendor div con la clase-card lo usaremos no para esto sino para centrarlo */
+  justify-content: center;/*Esta propiedad en la encargada de centrar nuestro div hijo add-card de
+  forma horizontal*/
+  padding: 40px 20px;/*aqui damos un padding arriba y abajo de 40 px y a los lados de 20px*/
+}
+
+/* Tarjeta Blanca */
+/*Este es nuestro contenedor hijo que contiene el titulo del formulario y el formulario mismo*/
+.add-card {
+  background: #ffffff;/*Le damos un color blanco*/
+  border-radius: 15px;/*Redondeamos los bordes*/
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05); /* Sombra elegante */
+  padding: 35px; /*Le damos un padding de 35px a todos los lados*/
+  width: 100%;/*le damos un ancho del 100% para que ocupe todo el ancho disponible*/
+  max-width: 480px;/*Le decimos que tendra un ancho maximo de 480px*/
+  border: 1px solid #f0f0f0;/*Agregamos un borde de 1px solido de un color gris claro*/
+}
+/*Seleccionamos nuestra equiteta h2 que contiene nueestro titulo del formulario*/
+h2 {
+  text-align: center;/*Alinea de forma horizontal en base a su contenedor*/
+  color: #2c3e50;/*Le damos un color a la letra*/
+  margin-bottom: 25px;/*Le damos un margen hacia abajo de 25px*/
+  font-weight: 700;/*Le damos un grosor de letra*/
+}
+
+/* Grupos de formulario */
+/*Aqui selecionamos varios div al mismo tiempo concretamente los div que contiene cada uno de 
+los inputs y labels */
+.form-group {
+  margin-bottom: 20px;/*Damos un margen de 20px hacia abajo*/
+  margin-right: 25px;/*Damos un margen 25px hacia la derecha*/
+}
+/*Aqui selecionamos nuestras equitetas label*/
+label {
+  display: block;/*Los hacemos para que los elementos se acomoden uno por debajo del otro*/
+  margin-bottom: 8px;/*Le damos un margen de 8px hacia abajo*/
+  font-weight: 500;/*le damos un grosor medio a la letra*/
+  color: #7f8c8d;/*le damos un color a la letra*/
+}
+
+/* Inputs y Textarea */
+input, textarea {
+  width: 100%;/*Le decimos que ocupe el 100% del ancho disponible*/
+  padding: 12px 15px;/*Añadimos un padding arriba y abajo de 12px y a los lados de 15px*/
+  border: 2px solid #edf2f7;/*Colocamos un borde de 2px solid de color gris claro*/
+  border-radius: 10px;/*redondeamos los imputs y el textarea*/
+  font-size: 1rem; /*Tamaño de letra relativo*/
+  transition: all 0.3s ease;/*agregamos un tiempo para aplicar una transicion*/
+}
+/*utilizamos la pseudoclase focus que quiere decir que estamos dentro del input y cuando esto pase
+haremos estos cambios*/
+input:focus, textarea:focus {
+  outline: none; /*quitamos el borde por defecto que tiene nuestro navegado al hacer click para
+  agregar el nuestro*/
+  border-color: #3498db;/*le colocamos un color al borde*/
+  background: #fcfdfe;/*le damos un fondo al input y al textarea*/
+}
+
+/* Botón Guardar (Azul para diferenciar del editar) */
+.btn-save {
+  width: 100%;/*Le decimos al boton  que ocupe el 100% del ancho disponible */
+  background: linear-gradient(135deg, #409edc, #033556);/*le agregamos un color de fondo utilizando
+  un degradado que empieza en un azul claro y termina en un azul oscuro en un angulo de 135 grados*/
+  color: white;/*le damos un color de letra blanco*/
+  border: none;/*le quitamos el borde*/
+  padding: 15px;/*le damos un padding de 15px a todos sus lados*/
+  border-radius: 10px;/*redondeamos ligeramente nuestro boton*/
+  font-size: 1.1rem;/*Le damos un tamaño de letra ligeramente mas grande*/
+  font-weight: 600;/*aumentamos el grosor de la letra*/
+  cursor: pointer;/*agregamos esta propiedad para que cuando coloquemos el cursor encima del boton 
+  el puntero cambie a una manita*/
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);/*le damos un sombreado al boton*/
+  transition: transform 0.2s;/*Le damos una trancicon de tipo transform y que tarde 0.2 segundos 
+  en hacerse*/
+}
+/*Agregamos la psudoclase hover para que al posicionarnos encima del boton cambiemos su pocion y su 
+sombra*/
+.btn-save:hover {
+  transform: translateY(-2px);/*Cambiamos la altura del boton lo movemos 2px hacia arriba*/
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);/*modificamos su sombreado tambien lo hacemos
+  mas pronunciado*/
+}
+
+/* Link Volver */
+.btn-back {
+  display: block; /*Lo hacemos block para que agrupe debajo uno del otro*/
+  text-align: center;/*centramos el texto*/
+  margin-top: 20px; /*Le damos un margen arriba de 20px*/ 
+  color: #95a5a6; /*le damos un color gris*/
+  text-decoration: none; /*quitamos la linea que viene por defecto*/
+  font-size: 0.9rem; /*reducimos ligeramente el tamaño de letra relativo*/
+}
+/*seleccionamos nuestro link para volver y le agregamos la pseudoclase hover para que al posicionarnos
+por encima de el el color cambie a un gris mas fuerte*/
+.btn-back:hover {
+  color: #34495e;
+}
+/*debajo de cada input colocamos un spam con la clase error message que corresponde a los estilos
+que acontinuacion de dan a esos elementos*/
+.error-message {
+  color: #d32f2f; /* Le damos un color rojo de letra*/
+  font-size: 0.85rem; /*un tamaño de letra realtivo ligeramente mas pequeño*/
+  margin-top: 4px;/*un margen superior de 4px*/
+  display: block; /* Para que baje a la siguiente línea */
+  font-weight: 500; /*un grosor de letra medio*/
+  transition: all 0.3s ease;/*se prepara para cualquier cambio de estado y que el cambio sea suave 
+  al darle 0.3 segundos*/
+}
+/*Seleccionamos la clase alert-error que es de un div que contiene una variable de tipo signal
+que contiene un mensaje de error*/
+.alert-error {
+  background-color: #ffe5e5;/*Le damos un fondo rosado*/
+  color: #b71c1c; /*Un color de letra rojo*/
+  padding: 12px;/*un padding a todos sus lados de 12px*/
+  border-radius: 8px;/*redondeamos el contenedor*/
+  border: 1px solid #f44336;/*le damos un borde rojo*/
+  margin-bottom: 15px; /*le damos un margen a la parte de abajo de 15px*/
+  text-align: center; /*centramos horizontalmente el texto*/
+  font-weight: bold;/*le damos un grosor a la letra*/
+  animation: shake 0.2s ease-in-out 0s 2; /* Un pequeño efecto de vibración le añadimos shake haciendo
+  referencia a la coreografia definida abajo definimos el tiendo de la animacion
+  ease-in-out quiere decir que empiezce lento acelere en medio y termine lento 0s es el retraso en 
+  este caso no hay por lo que empezara de inmediato 2 es el numero de repeticiones osea vibrara 2
+  veces */
+}
+/*keyframes nos permite realizar animaciones complejas
+esta anicion completa da la seccion de que esta vibrando el mensaje*/
+@keyframes shake {
+  0% { transform: translateX(0); }/*el mensaje inicia en su posicion original horizontalmente*/
+  25% { transform: translateX(5px); }/*se mueve 5px a la derecha*/
+  50% { transform: translateX(-5px); }/*ahora cruza el centro y se mueve 5px a la izquierda*/
+  75% { transform: translateX(5px); }/*cruza al centro y se mueve 5px a la derecha*/
+  100% { transform: translateX(0); }/*al finalizar termina en su posicion original*/
+}

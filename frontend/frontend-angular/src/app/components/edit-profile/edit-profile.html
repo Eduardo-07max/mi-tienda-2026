@@ -1,0 +1,62 @@
+<!--Este div es el contenedor padre y contiene la clase main-container-->
+<div class="main-container">
+  <!--Este contenedor div con la clase detail-card funcionara como una card y contiene nuestro formualrio para actualizar nuestros perfil a si como sus titulo-->
+  <div class="detail-card">
+    <!--Este card-header que es un div contendra nuestro titulo del formulario-->
+    <div class="card-header">
+      <span class="badge">Mi Cuenta</span>
+      <h1>Editar Perfil</h1>
+    </div>
+<!--Este bloque if evalua si la signal message tiene algo osea es true si es asi entra al if -->
+    @if (message()) {
+      <!--en este parte con [class.alert-success]="!isError()" preguntamos si isError es diferente de true agregamos la clase alert-succes para poner nuestro texto con estilos y colores de color verde en css, [class.alert-danger]="isError()" por el otro lado si isError es true lo que hacemos sera es agregar la clase alert-danger para agregar estilos en rojo -->
+      <div class="alert" [class.alert-success]="!isError()" [class.alert-danger]="isError()">
+        <!--Aqui mostraramos nuestro mensaje que sera positivo o negativo dependiendo de la respuesta que nos den-->
+        {{ message() }}
+      </div>
+    }
+<!--Ahora aqui niestro formulario con la directiva ngSubmit cuando demos click en actualizar se llamara a la funcion updateProfile este formualrio tambien tiene la clase card-content-->
+    <form (ngSubmit)="updateProfile()" class="card-content">
+      <!--Aqui colocamos un contendor div con la clase avatar-upload-section  que contendra nuestra vista previa de la imagen, un label y un input para selecionar una nueva imagen-->
+      <div class="avatar-upload-section">
+        <div class="avatar-preview">
+          <!--Nuestra etiqueta image para visualizar la imagen actual del usuario o la que selecionemos esto gracias a la signal imagePreview-->
+          <img [src]="imagePreview()" alt="Preview">
+        </div>
+        <!--Este label con for file-upload esta tomando las propiedades del input sirviendo entonces tambien como un input-->
+        <label for="file-upload" class="custom-file-upload">
+          📷 Cambiar Foto
+        </label>
+        <!--Nuestro input con la propiedad change quiere decir que estamos selecionando una imagen y al hacer esto llama a la funcion onFileSelected que se lleva de parametro la imagen que elegimos, aceppt="image" es un filtro para que al abrir el navegador solo visualicemos archivos de tipo imagen-->
+        <input id="file-upload" type="file" (change)="onFileSelected($event)" accept="image/*" />
+      </div>
+<!--Ahora este contenedor div con la clase info-group contiene el input para el nombre del usuario -->
+      <div class="info-group">
+        <label>Nombre Completo</label>
+        <!--Este input esta vinculado al signal userForm concretamente a la propiedad name y es requerido-->
+        <input 
+          type="text" 
+          [(ngModel)]="userForm().name" 
+          name="name" 
+          required
+        >
+      </div>
+
+      <div class="info-group">
+        <label>Correo Electrónico</label>
+        <!--Este input esta vinculado al signal userForm concretamente a la propiedad email y es requerido tambien-->
+        <input 
+          type="email" 
+          [(ngModel)]="userForm().email" 
+          name="email" 
+          required
+        >
+      </div>
+<!--Por ultimo tenemos al contenedor card-actions que contiene nuestro boton para guaradar cambios y un link para volver a la lista de productos-->
+      <div class="card-actions">
+        <button type="submit" class="btn-save">💾 Guardar Cambios</button>
+        <a routerLink="/products" class="back-link">Volver</a>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+<!--Tenemos nuestro contenedor padre con la clase form-container para dar estilos en css-->
+<div class="form-container">
+  
+  <!--Aqui tenemos nuestro contenedor div con la clase edit-card que contiene el titulo de nuestro formulario y el mismo formulario-->
+  <div class="edit-card">
+    <h2>✏️ Editar Producto</h2>
+<!--(ngSubmit)="updateProduct() quiere decir que cuando demos a enviar ejecutara la funcion update product. Posteriormente con #editForm="ngForm" estamos creando una variable llamada editForm que es de estado nos dice si el formualrio es valido o no o si ha sido tocado mas adelante nos sirve para habilitar o deshabilitar el boton de actulizar si esque existe un error  "-->
+    <form (ngSubmit)="updateProduct()" #editForm="ngForm">
+      
+      <!--A cada input con su label lo metemos el un contenedor div con la clase form-group-->
+      <div class="form-group">
+        <label>Nombre del Producto</label>
+        <!--Aqui el primer input sera de tipo texto, esta vinculado a la propiedad name de nuestro signal product, le damos de nombre name a este input, es required es decir que no puede quedarse en blanco, #nameField="ngModel" esta propiedad nos permite saber si el input tiene errores, placeholder es el texto de refeencia en gris que tendra el usuario cuando el input este vacio, class.invalid-input se le agregara esta clase en caso de que se cumpla esta condicion nameField.invalid && (nameField.dirty || nameField.touched) osea si en input es invalid y si se ha alterado el valor original del input o si hemos tocado y salido del input -->
+        <input 
+          type="text" 
+          [(ngModel)]="product().name" 
+          name="name" 
+          required
+          #nameField="ngModel"
+          placeholder="Ej. Laptop Gamer"
+          [class.invalid-input]="nameField.invalid && (nameField.dirty || nameField.touched)"
+        >
+        <!--Aqui nos apoyamos de la propiedad nameField para mediante un bloque if comprobar si el input es invalid es decir vacio y si se cumple una de estas dos condicones el campo a sifo alterado su valor original o si hemos tocado y salido de el si es asi nos mostrara el span con el mensaje este campo es obligatorio-->
+        @if (nameField.invalid && (nameField.dirty || nameField.touched)) {
+          <span class="error-message">Este campo es obligatorio</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label>Precio ($pesos)</label>
+        <!--Aqui vinculamos el input price a la propiedad price del product signal, de damos de nombre price este input es required es decir no puede estar vacio, es de tipo numerico, de valor minino debe tener 0.01 cuando el input esta vacio tendra un texto que diga 0.00, priceField es una variable local para comprobar el estado del input, class.invalid-input es una clase que se agrega si se cumplen estas condiciones el input es invalid o vacio, el valor original ha sido alterado o se tocho y se salio del input-->
+        <input 
+          type="number" 
+          [(ngModel)]="product().price" 
+          name="price" 
+          required
+          min="0.01"
+          #priceField="ngModel"
+          placeholder="0.00"
+          [class.invalid-input]="priceField.invalid && (priceField.dirty || priceField.touched)"
+        >
+        <!--Con este bloque if preguntamos si el input es invalid osea esta en blanque y es dirty el contenido original se cambio o se tocho y salio del input mostrara nuestro spam con un mensaje de error-->
+        @if (priceField.invalid && (priceField.dirty || priceField.touched)) {
+          <span class="error-message">El precio es obligatorio y debe ser mayor a 0</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label>Descripción detallada</label>
+        <!--Aqui vinculamos este textarea con la propiedad product.description, es requerido osea no puede estar en blanco,rows 4 altura inicial, la vaiable de estados es descField la condicion que evaluamos es invalid si esta en lanco y si se cumplen al menos una de estas dos dirty se altero el valor original o touched se toco y se salio del input -->
+        <textarea 
+          [(ngModel)]="product().description" 
+          name="description" 
+          rows="4" 
+          required
+          #descField="ngModel"
+          placeholder="Escribe aquí..."
+          [class.invalid-input]="descField.invalid && (descField.dirty || descField.touched)"
+        ></textarea>
+        <!--Aqui en esta parte con el bloque if comprobamos que se cumplan estas condicones priemra que el input sea invalid es decir vacio o que sea dirty que hayamos cambiado el valor inicial o que hayamos tocado y salido del input de ser asi mostramos el spam con el mensaje de error -->
+        @if (descField.invalid && (descField.dirty || descField.touched)) {
+          <span class="error-message">La descripción es obligatoria</span>
+        }
+      </div>
+
+   <div class="form-group">
+  <label>Imagen del Producto</label>
+  <!--Este div con la clase image-preview-container contiene nuestra imagen para previsualizar  uestra imagen-->
+  <div class="image-preview-container">
+    <!--Este bloque if evalua si el signal imagePreview tiene algo entonces mostrara esa imagen -->
+    @if (imagePreview()) {
+      <!--Nuestra etiqueta image que apunta a lo que tenga imagePreview-->
+      <img [src]="imagePreview()" alt="Vista previa nueva" class="img-render">
+      <span class="badge-new">Nueva</span>
+      <!--En caso de que no tengamos nada en imagenPreview evluamos esta segunda condicion donde en caso de que nuestro signal product si tenga en la propiedad imagen un nombre mostrarares dicha imagen-->
+    } @else if (product().image) {
+      <!--La etiqueta image apunta a laruta donde esta esa imagen acompañada de su nombre exacto-->
+      <img [src]="'http://localhost:8000/storage/productos/' + product().image" alt="Imagen actual" class="img-render">
+    } @else {
+      <!--Si de plana ninguna tiene una imagen lo que hacemos sera mostrar un icon de camara y un texto que diga sin imagen seleccionada-->
+      <div class="no-image-placeholder">
+        <span class="icon">📷</span>
+        <p>Sin imagen seleccionada</p>
+      </div>
+    }
+  </div>
+<!--Este input sera de tipo file y al selecionar nuestro archivo se dispara el evento change que manda llamar a nuestro metodo onFileSelected(donde se lleva de parametro el archivo), accept = "image/" es un filtro de selecion para cuando abra el explorador de archivos solo mjuestre archivos de tipo imagen, le agregamos una clase file-input,id = fileInput para conectarlo a la etiqueta label-->
+  <input 
+    type="file" 
+    (change)="onFileSelected($event)" 
+    accept="image/*"
+    class="file-input"
+    id="fileInput"
+  >
+  <!--Con el id que definmos antes en el input que tiene de nombre fileInput vinculamos a este label con el input para que nuestra etiqueta label tambien funcione como input y se pueda clicear por encima de este para poder selecionar una imagen por otro labo dentro de nuestro label colacamos una condicion donde si imagePreview tiene algo es true por lo que mostrara el texto Cambiar imagen y si es falso es decir no tiene nada pondra selecionar imagen-->
+  <label for="fileInput" class="custom-file-upload">
+    {{ imagePreview() ? 'Cambiar imagen' : 'Seleccionar imagen' }}
+  </label>
+  <small class="help-text">Opcional: Reemplaza la imagen actual seleccionando un archivo nuevo.</small>
+</div>
+<!--Aqui colocamos un bloque if donde si errorMessage es true es decir tiene algo nos mostrara un div con el mensaje de error es decir cuando algo salga mal en la peticion-->
+      @if (errorMessage()) {
+        <div class="alert-error">
+          {{ errorMessage() }}
+        </div>
+      }
+<!--Aqui tenemos nuestro boton de actulizar producto que es de tipo submit que estara invalidado si no se cumplen todos los requisitos de todos nuestros inputs es importante notar que esto es gracias a la variable editForm que definimos al principio de nuestro formulario-->
+      <button type="submit" class="btn-update" [disabled]="editForm.invalid">
+        Actualizar Producto
+      </button>
+<!--Ahora aqui agregamos un link que nos regresa a nuestra lista de productos donde si no dimos al boton de actulizar volveremos a dicha vista y los cambios no se habran efectuado-->
+      <a routerLink="/products" class="btn-back">⬅️ Cancelar y volver</a>
+
+    </form>
+  </div>
+</div>

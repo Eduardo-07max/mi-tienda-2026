@@ -1,0 +1,123 @@
+/* Contenedor principal que ocupa toda la pantalla */
+.auth-wrapper {
+  display: flex;/*agregamos esta propiedad para que los elementos se agrupen uno al aldo del otro*/
+  justify-content: center;/*Lo centramos horizontalmente*/
+  align-items: center;/*Lo centramos verticalmente*/
+  min-height: 90vh; /*este contenedor ocupara el 90 % del ancho total*/
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /*este contenedor tendra un degrado que va de la iesquina superior izquierna a la esquina infeior derecha empezara en balnco y termiana en un gris*/
+  padding: 20px; /*todos sus lados tendran un padiing de 20px*/
+}
+
+/* La tarjeta del formulario contiene el titulo del formulario y el mismo formulario*/
+.auth-container {
+  background: white; /*sera color balnco de fondo*/
+  width: 100%; /*ocupara el 100% del ancho*/
+  max-width: 400px; /*cuando las pantallas esten muy anchas o superen los 400px de ancho estecontenedor se mantendra con un ancho maximo de 400px cuando sea menor a esto si ocupara todo el ancho*/
+  padding: 40px; /*Tendra un padding en todos sus lados de 40px*/
+  border-radius: 20px; /*redondeamos nuestro contenedor o sus esquinas mejor dicho*/
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1); /*agregamos sombreado*/
+  text-align: center; /*Los textos deben ir centrados*/
+  animation: slideIn 0.6s ease-out; /*agregamos una animacion llamada slideIn que durara 0.6 segndos*/
+}
+/*La animacion iniciara con nuestra card por debajo 20px y invisible al terminar la animacion volvera a su pocision original y volvera a aparecer dando la sensacion que aparece desde abajo*/
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/*Aqui estamos selecionando a  nuestro titulo del formualrio*/
+h2 {
+  color: #2c3e50; /*Le damos un color de letra*/
+  font-size: 1.8rem;/*un tamaño del letra*/
+  margin-bottom: 30px;/*Damos un margen inferior de 30px*/
+  font-weight: 800;/*Grosor de letra*/
+}
+
+/* Grupos de entrada estamos seleccionando a todos los div que contiene un label y un input  */
+.form-group {
+  text-align: left; /*El texto lo recargamos a la izquirda*/
+  margin-bottom: 20px;/*Le damos un margen inferior de 20px*/
+}
+/*Estamos selecionando las etiquetas labels*/
+label {
+  display: block; /*esta propiedad nos sirve para acomodar los labes uno debajo de los otros*/
+  font-size: 0.9rem; /*tamaño de letra*/
+  font-weight: 600; /*grosor de letra*/
+  color: #7f8c8d;/*color de letra*/
+  margin-bottom: 8px;/*damos un margen bajo de 8px*/
+  margin-left: 5px; /*un margen izquierdo de 5px*/
+}
+
+input {
+  width: 100%; /*El input ocupara un ancho del 100%*/
+  padding: 12px 15px; /*padding arriba y abajo de 12px */
+  border: 2px solid #edf2f7;/*damos un borde a los inputs de de 2px solid en color gris muy claro*/
+  border-radius: 12px; /*redondeamos las ezquinas de nuestros inputs*/
+  font-size: 1rem; /*tamaño de letra*/
+  transition: all 0.3s;/*le aplicamos una transicion que durara 0.3 segundos en completarse*/
+  box-sizing: border-box; /* Importante para que el padding no desborde */
+}
+/*ahora cuando estemos dentro de los inputs tendra estos estilos */
+input:focus {
+  outline: none;/*quitamos el borde por defecto*/
+  border-color: #3498db;/*colocamos un nuevo color de borde*/
+  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1); /*Agregamos una sombra*/
+  background-color: #fff; /*Agregamos un color blanco*/
+}
+
+/* Botón de entrada */
+button {
+  width: 100%;/*Ocupara el 100% de ancho disponible*/
+  padding: 14px; /*tendra un padding en todos sus lados */
+  background: linear-gradient(to right, #3498db, #2ecc71);/*el boton tendra un degrado que va de izquierda empezando en azul y termniando en verde a la derecha*/
+  color: white; /*Color de letra*/
+  border: none; /*quitamos el borde*/
+  border-radius: 12px; /*redondeamos nuestro boton*/
+  font-size: 1.1rem; /*tamaño de letra*/
+  font-weight: 700;/*Grosor de letra*/
+  cursor: pointer;/*para que aparezca la manita*/
+  transition: all 0.3s; /*agregamos una trancion de 0.3 segundos que detectara cualquier cambio*/
+  margin-top: 10px;/*damos un margen bajo de 10px*/
+  box-shadow: 0 5px 15px rgba(46, 204, 113, 0.2); /*sombra al boton*/
+}
+/*Cuando estemos encima del boton y no sea disable el boton hara esto*/
+button:hover:not(:disabled) {
+  transform: translateY(-2px);/*subira 2px hacia arriba*/
+  box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);/*cambiara su sombreado*/
+  filter: brightness(1.1);/*sera un poco mas brillante el boton*/
+}
+/*Cuando el boton sea disabled*/
+button:disabled {
+  background: #bdc3c7; /*tendra un color gris*/
+  cursor: not-allowed; /*esta propiedad hara que aparesca un circulo tachado*/
+  box-shadow: none; /*quitamos el sombreado*/
+}
+
+/* Mensajes de error es un contendor div con el mensaje de error*/
+.error-msg {
+  background-color: #fff5f5;/*tendra este color de fondo*/
+  color: #e74c3c;/*este color de letra*/
+  padding: 10px; /*tendra un padding en todos sus lados de 10px*/
+  border-radius: 8px;/*redondeamos el contenedor div*/
+  font-size: 0.85rem;/*tamaño de letra*/
+  margin-bottom: 20px;/*damos un margen bajo de 20px*/
+  border-left: 4px solid #e74c3c; /*damos un borde rojo solido de 4px*/
+}
+
+/* Texto de registro inferior es un parrafo */
+.register-text {
+  margin-top: 25px; /*le damos un margen de 25px*/
+  color: #95a5a6; /*color de letra*/
+  font-size: 0.9rem;/*tamaño de letra*/
+}
+/*estamos selecionando el enlace que se encuentra dentro de nuestro parrafo*/
+.register-text a {
+  color: #3498db;/*color de letra*/
+  text-decoration: none; /*quitamos la linea de los enlaces*/
+  font-weight: 700; /*grosor de letra*/
+  transition: color 0.2s; /*agregamos una trancicion que afectara o obsewrvra solo los cambios de color dura 0.2 segundos*/
+}
+
+.register-text a:hover {
+  text-decoration: underline; /*Le colocamos la linea al texto de enlace*/
+  color: #2980b9;/*hacemos el boton con un color azul mas fuerte*/
+}

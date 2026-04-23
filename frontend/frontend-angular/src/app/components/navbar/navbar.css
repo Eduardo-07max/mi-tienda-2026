@@ -1,0 +1,202 @@
+/* --- BARRA DE NAVEGACIÓN PRINCIPAL --- */
+
+/* Contenedor Nav: Seleccionamos la etiqueta <nav> con la clase 'navbar' */
+.navbar {
+  display: flex; /* Activa Flexbox para alinear el logo y la sección de usuario */
+  justify-content: space-between; /* Empuja el logo a la izquierda y el usuario a la derecha */
+  align-items: center; /* Centra verticalmente todos los elementos internos */
+  padding: 12px 40px; /* Espacio interno: 12px arriba/abajo y 40px a los lados */
+  background: rgba(255, 255, 255, 0.95); /* Fondo blanco con 95% de opacidad (translucidez) */
+  backdrop-filter: blur(10px); /* ¡EFECTO CRISTAL!: Desenfoca lo que haya detrás de la barra */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05); /* Sombra muy sutil hacia abajo */
+  position: sticky; /* La barra se queda fija al hacer scroll */
+  top: 0; /* Se mantiene pegada al borde superior de la ventana */
+  z-index: 1000; /* Asegura que la barra siempre esté por encima de cualquier otro elemento */
+  border-bottom: 1px solid #f0f0f0; /* Línea divisoria muy fina en la base */
+}
+
+/* --- SECCIÓN DEL LOGO --- */
+
+/* Contenedor Logo: Seleccionamos el <div> con clase 'logo' */
+.logo {
+  display: flex; /* Alinea el icono 🛒 y el texto en fila */
+  align-items: center; /* Centra el icono con el texto */
+  gap: 10px; /* Separación entre icono y texto */
+  font-size: 1.4rem; /* Tamaño de letra destacado */
+  font-weight: 800; /* Grosor de fuente extra negrita */
+  cursor: pointer; /* Indica que es un enlace clickeable */
+  transition: transform 0.2s; /* Suaviza el efecto de escala al pasar el ratón */
+}
+
+/* Efecto hover en el logo */
+.logo:hover {
+  transform: scale(1.02); /* Crece un 2% cuando el usuario pasa el ratón */
+}
+
+/* Texto del Logo: Seleccionamos el <span> con clase 'logo-text' */
+.logo-text {
+  /* Creamos un degradado de azul oscuro a azul claro */
+  background: linear-gradient(45deg, #2c3e50, #3498db);
+  -webkit-background-clip: text; /* Recorta el degradado para que solo se vea en las letras */
+  -webkit-text-fill-color: transparent; /* Hace el color de letra invisible para mostrar el degradado */
+}
+
+/* --- SECCIÓN DE USUARIO Y AVATAR --- */
+
+/* Contenedor derecho: Seleccionamos el <div> con clase 'user-section' */
+.user-section {
+  display: flex; /* Alinea la info del usuario y el dropdown */
+  align-items: center; 
+  gap: 25px; /* Espacio entre el saludo y el botón de cuenta */
+}
+
+/* Info del usuario: Seleccionamos el <div> con clase 'user-info' */
+.user-info {
+  display: flex; 
+  align-items: center;
+  gap: 15px;
+}
+
+/* Envoltura del Avatar: Seleccionamos el <div> con clase 'avatar-wrapper' */
+.avatar-wrapper {
+  position: relative; /* Punto de referencia para el punto verde de 'status' */
+  display: flex;
+}
+
+/* Imagen de perfil: Seleccionamos la etiqueta <img> con clase 'nav-avatar' */
+.nav-avatar {
+  width: 48px; /* Tamaño del círculo de imagen */
+  height: 48px;
+  border-radius: 50%; /* Lo hace un círculo perfecto */
+  object-fit: cover; /* Centra y recorta la foto del usuario automáticamente */
+  border: 3px solid #ffffff; /* Marco blanco alrededor de la foto */
+  box-shadow: 0 0 0 2px #3498db; /* Crea un segundo borde azul por fuera del blanco */
+  transition: all 0.3s; /* Suaviza cambios visuales */
+}
+
+/* Punto de estado: Seleccionamos el <div> con clase 'status-indicator' */
+.status-indicator {
+  position: absolute; /* Se posiciona encima del avatar */
+  bottom: 2px; /* A 2px del borde inferior */
+  right: 2px; /* A 2px del borde derecho */
+  width: 12px; /* Tamaño del punto */
+  height: 12px;
+  background-color: #2ecc71; /* Color verde de "conectado" */
+  border: 2px solid white; /* Borde blanco para que resalte sobre la foto */
+  border-radius: 50%; /* Lo hace circular */
+}
+
+/* Texto de bienvenida: Seleccionamos el <span> con clase 'welcome-text' */
+.welcome-text {
+  color: #2f3542; /* Gris oscuro */
+  font-size: 0.95rem; /* Tamaño estándar legible */
+}
+
+/* Nombre resaltado: Seleccionamos el <strong> dentro de 'welcome-text' */
+.welcome-text strong {
+  color: #3498db; /* Ponemos el nombre del usuario en azul para que resalte */
+}
+
+/* --- MENÚ DESPLEGABLE (DROPDOWN) --- */
+
+/* Botón del menú: Seleccionamos el <button> con clase 'dropbtn' */
+.dropbtn {
+  background-color: #f1f2f6; /* Fondo gris muy suave */
+  color: #2f3542; /* Texto oscuro */
+  padding: 10px 20px; /* Tamaño del botón */
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px; /* Esquinas muy redondeadas */
+  cursor: pointer;
+  /* 'cubic-bezier' da un efecto de rebote elástico a la animación del botón */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio para la flechita ▼ */
+}
+
+/* Estado Activo/Hover del botón */
+.dropbtn:hover, .dropbtn.active {
+  background-color: #3498db; /* Cambia a azul */
+  color: white; /* Texto blanco */
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3); /* Sombra azulada */
+}
+
+/* Flecha del menú: Seleccionamos el <span> con clase 'arrow' */
+.arrow {
+  font-size: 0.7rem; /* Flecha pequeña */
+  transition: transform 0.3s; /* Animación para rotar la flecha */
+}
+
+/* Rotación: Cuando el botón tiene la clase .active, la flecha gira 180 grados */
+.dropbtn.active .arrow {
+  transform: rotate(180deg);
+}
+
+/* --- CONTENIDO DEL MENÚ (EL CUADRO QUE APARECE) --- */
+
+/* Cuadro flotante: Seleccionamos el <div> con clase 'dropdown-content' (@if menuVisible) */
+.dropdown-content {
+  position: absolute; /* Flota sobre el resto del contenido */
+  right: 0; /* Se alinea al borde derecho del botón */
+  top: calc(100% + 12px); /* Aparece justo debajo del botón con un pequeño margen */
+  background-color: white;
+  min-width: 200px; /* Ancho mínimo del menú */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Sombra pesada para dar efecto de "flotación" */
+  z-index: 100;
+  border-radius: 15px; /* Bordes redondeados */
+  padding: 8px; /* Espacio interno para los enlaces */
+  border: 1px solid #f1f2f6;
+  animation: slideDown 0.3s ease-out; /* Llama a la animación definida abajo */
+}
+
+/* Animación de entrada: El menú baja y aparece suavemente */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Enlaces del menú: Seleccionamos <a> con clase 'dropdown-link' */
+.dropdown-link {
+  display: block; /* Cada enlace ocupa una línea completa */
+  padding: 12px 15px;
+  color: #57606f; /* Gris suave */
+  text-decoration: none; /* Sin subrayado */
+  font-size: 0.9rem;
+  border-radius: 10px; /* Bordes internos redondeados */
+  transition: all 0.2s;
+}
+
+/* Hover en los enlaces del menú */
+.dropdown-link:hover {
+  background-color: #f1f2f6; /* Fondo gris claro */
+  color: #3498db; /* Texto azul */
+  padding-left: 20px; /* Efecto de desplazamiento a la derecha */
+}
+
+/* Línea divisoria: Seleccionamos el <div> con clase 'divider' */
+.divider {
+  height: 1px; /* Grosor de la línea */
+  background-color: #f1f2f6; /* Color gris suave */
+  margin: 8px 0; /* Separación vertical */
+}
+
+/* Botón Cerrar Sesión: Seleccionamos el <button> con clase 'logout-link' */
+.logout-link {
+  width: 100%; /* Botón de ancho completo */
+  padding: 12px 15px;
+  text-align: left; /* Texto alineado a la izquierda como los enlaces */
+  background: none; /* Sin fondo de botón */
+  border: none;
+  color: #ff4757; /* Color rojo (peligro/salida) */
+  font-weight: 700; /* Texto en negrita */
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+/* Hover de cerrar sesión */
+.logout-link:hover {
+  background-color: #fff0f0; /* Fondo rosado muy pálido */
+}

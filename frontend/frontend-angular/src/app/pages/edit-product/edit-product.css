@@ -1,0 +1,242 @@
+/* --- CONTENEDORES PRINCIPALES --- */
+
+/* Contenedor padre: Seleccionamos el elemento <div> con la clase 'form-container' */
+.form-container {
+  display: flex; /* Activa el modelo de caja flexible para alinear elementos hijos */
+  justify-content: center; /* Centra el contenido horizontalmente en el eje principal */
+  padding: 40px 20px; /* Crea un margen interno de 40px arriba/abajo y 20px a los lados */
+}
+
+/* Tarjeta de edición: Seleccionamos el elemento <div> con la clase 'edit-card' */
+.edit-card {
+  background: #ffffff; /* Define el color de fondo como blanco puro */
+  border-radius: 12px; /* Redondea las esquinas del div con un radio de 12px */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Aplica una sombra sutil: 0px X, 4px Y, 10px de difuminado */
+  padding: 30px; /* Espacio de 30px entre los bordes del div y su contenido (el formulario) */
+  width: 100%; /* El div intentará ocupar todo el ancho de su contenedor padre */
+  max-width: 450px; /* Restringe el crecimiento del div a un máximo de 450px */
+  border: 1px solid #eee; /* Dibuja un contorno sólido de 1px en color gris muy tenue */
+}
+
+/* Título de la tarjeta: Seleccionamos la etiqueta de encabezado <h2> */
+h2 {
+  margin-top: 0; /* Elimina el margen superior predeterminado del navegador */
+  color: #333; /* Establece el color de la fuente a un gris oscuro */
+  text-align: center; /* Alinea el texto del encabezado al centro */
+  font-size: 1.5rem; /* Define el tamaño de la letra a 1.5 veces el tamaño base del documento */
+}
+
+/* --- ELEMENTOS DEL FORMULARIO --- */
+
+/* Etiquetas de campo: Seleccionamos todas las etiquetas <label> */
+label {
+  display: block; /* Hace que el label se comporte como un bloque (ocupa toda la línea y se acomodan uno debajo del otro) */
+  margin-bottom: 8px; /* Crea un espacio de 8px entre el texto del label y el input de abajo */
+  font-weight: 600; /* Define un grosor de fuente semi-negrita */
+  color: #555; /* Establece el color del texto a un gris medio */
+  font-size: 0.9rem; /* Define un tamaño de letra ligeramente reducido */
+}
+
+/* Entradas de datos: Seleccionamos las etiquetas <input> y <textarea> */
+input, textarea {
+  width: 100%; /* Obliga a los elementos a ocupar el 100% del ancho de la tarjeta */
+  padding: 12px; /* Espacio interno de 12px para que el texto no toque los bordes del cuadro */
+  margin-bottom: 20px; /* Espacio de 20px debajo de cada campo para separarlos entre sí */
+  border: 1px solid #ddd; /* Borde sólido de 1px en color gris claro */
+  border-radius: 8px; /* Redondea las esquinas de los cuadros de texto con 8px */
+  font-size: 1rem; /* Define el tamaño de letra de escritura en 16px (estándar) */
+  box-sizing: border-box; /* Incluye el padding y el borde dentro del cálculo del ancho total */
+  transition: border-color 0.3s; /* Crea una animación de 0.3s cuando el color del borde cambia */
+}
+
+/* Estado de enfoque: Seleccionamos <input> y <textarea> con la pseudo-clase ':focus' */
+input:focus, textarea:focus {
+  outline: none; /* Elimina el borde resaltado automático que pone el navegador */
+  border-color: #3498db; /* Cambia el color del borde a azul cuando el usuario hace clic dentro */
+}
+
+/* --- SECCIÓN DE IMAGEN Y PREVISUALIZACIÓN --- */
+
+/* Cuadro de vista previa: Seleccionamos el <div> con la clase 'image-preview-container' */
+.image-preview-container {
+  width: 100%; /* El contenedor ocupa el ancho completo disponible */
+  height: 220px; /* Define una altura fija para que la tarjeta no cambie de tamaño al cargar fotos */
+  border: 2px dashed #ddd; /* Borde gris con estilo punteado (líneas discontinuas) */
+  border-radius: 12px; /* Redondea las esquinas del área de imagen */
+  margin-bottom: 15px; /* Espacio de 15px entre este cuadro y el botón de selección */
+  display: flex; /* Usa flexbox para centrar contenido interno (imagen o icono) */
+  justify-content: center; /* Alinea el contenido al centro horizontalmente */
+  align-items: center; /* Alinea el contenido al centro verticalmente */
+  overflow: hidden; /* Oculta cualquier parte de la imagen que sobrepase los 220px de altura */
+  background-color: #f9f9f9; /* Color de fondo gris muy tenue para el área vacía */
+  position: relative; /* Establece un punto de referencia para elementos con posición absoluta */
+}
+
+/* Imagen renderizada: Seleccionamos la etiqueta <img> con la clase 'img-render' */
+.img-render {
+  max-width: 100%; /* La imagen no puede ser más ancha que el contenedor de 220px */
+  max-height: 100%; /* La imagen no puede ser más alta que el contenedor de 220px */
+  width: auto; /* Mantiene la proporción de aspecto original en el ancho */
+  height: auto; /* Mantiene la proporción de aspecto original en el alto */
+  object-fit: contain; /* Ajusta la imagen para que quepa entera sin recortarse ni deformarse */
+  display: block; /* Elimina el espacio extra que tienen las imágenes en la base */
+}
+
+/* Etiqueta flotante: Seleccionamos el elemento <span> con la clase 'badge-new' */
+.badge-new {
+  position: absolute; /* Saca al elemento del flujo normal para posicionarlo sobre la imagen */
+  top: 10px; /* Lo ubica a 10px del borde superior del contenedor de imagen */
+  right: 10px; /* Lo ubica a 10px del borde derecho del contenedor de imagen */
+  background: #2ecc71; /* Fondo verde para la etiqueta */
+  color: white; /* Texto de la etiqueta en color blanco */
+  padding: 4px 10px; /* Margen interno de la etiqueta: 4px arriba/abajo, 10px lados */
+  border-radius: 20px; /* Hace que los bordes de la etiqueta sean totalmente ovalados */
+  font-size: 0.75rem; /* Tamaño de letra muy pequeño */
+  font-weight: bold; /* Pone el texto en negrita */
+}
+
+/* Marcador de posición: Seleccionamos el <div> con la clase 'no-image-placeholder' */
+.no-image-placeholder {
+  text-align: center; /* Centra el icono y el texto de "Sin imagen" */
+  color: #888; /* Color gris para el contenido informativo */
+}
+
+/* Icono del marcador: Seleccionamos el <span> con clase 'icon' dentro de 'no-image-placeholder' */
+.no-image-placeholder .icon {
+  font-size: 2.5rem; /* Agranda el icono de la cámara a 40px aproximadamente */
+  display: block; /* Lo pone en una línea propia arriba del texto */
+  margin-bottom: 5px; /* Espacio de 5px entre el icono y el texto de abajo */
+}
+
+/* Selección de archivos: Seleccionamos el <input type="file"> con clase 'file-input' */
+.file-input {
+  display: block; /* Hace que el input ocupe su propio bloque */
+  border: none; /* Elimina cualquier borde predeterminado */
+  padding: 5px 0; /* Espacio mínimo arriba y abajo */
+  margin-bottom: 5px; /* Espacio de 5px debajo del selector */
+  cursor: pointer; /* Cambia el ratón a modo "mano" al pasar por encima */
+}
+
+/* Etiqueta personalizada: Seleccionamos el <label> con clase 'custom-file-upload' */
+.custom-file-upload {
+  display: inline-block; /* Permite darle dimensiones de bloque pero que fluya con el texto */
+  padding: 10px 20px; /* Espacio interno para que el label parezca un botón real */
+  background: #3498db; /* Establece el fondo en color azul */
+  color: white; /* Texto en color blanco */
+  border-radius: 8px; /* Redondea las esquinas del "botón" label */
+  cursor: pointer; /* Indica que el elemento es interactivo cambiando el puntero */
+  font-size: 0.9rem; /* Tamaño de letra ligeramente pequeño */
+  margin-bottom: 10px; /* Espacio de 10px inferior */
+  text-align: center; /* Centra el texto "Seleccionar imagen" */
+  transition: background 0.3s; /* Animación de 0.3s para el cambio de color en hover */
+}
+
+/* Hover de etiqueta: Seleccionamos 'custom-file-upload' con pseudo-clase ':hover' */
+.custom-file-upload:hover {
+  background: #2980b9; /* Cambia a un azul más oscuro al pasar el ratón */
+}
+
+/* Texto de ayuda: Seleccionamos la etiqueta <small> con clase 'help-text' */
+.help-text {
+  display: block; /* Obliga al texto a ocupar una línea completa */
+  color: #888; /* Color gris claro para texto secundario */
+  font-size: 0.8rem; /* Tamaño de letra pequeño (nota al pie) */
+  margin-bottom: 20px; /* Separa este texto del botón de actualizar */
+}
+
+/* --- BOTONES Y ACCIONES --- */
+
+/* Botón de actualizar: Seleccionamos el <button> con clase 'btn-update' */
+.btn-update {
+  width: 100%; /* El botón ocupa todo el ancho de la tarjeta */
+  background-color: #2ecc71; /* Color de fondo verde esmeralda */
+  color: white; /* Texto en color blanco */
+  border: none; /* Elimina el borde de fábrica del botón */
+  padding: 14px; /* Altura del botón definida por 14px de padding */
+  border-radius: 8px; /* Redondea las esquinas del botón */
+  font-size: 1rem; /* Letra de tamaño estándar */
+  font-weight: bold; /* Pone el texto en negrita */
+  cursor: pointer; /* Cambia el ratón a modo mano */
+  transition: background 0.3s; /* Animación suave para el cambio de color */
+}
+
+/* Hover de botón: Seleccionamos 'btn-update' con pseudo-clase ':hover' */
+.btn-update:hover {
+  background-color: #27ae60; /* El verde se oscurece al pasar el ratón */
+}
+
+/* Botón desactivado: Seleccionamos 'btn-update' con pseudo-clase ':disabled' (Angular) */
+.btn-update:disabled {
+  background-color: #bdc3c7; /* Cambia el fondo a gris si el formulario es inválido */
+  cursor: not-allowed; /* Cambia el ratón a un círculo rojo de "prohibido" */
+}
+
+/* Enlace de retroceso: Seleccionamos la etiqueta <a> con clase 'btn-back' */
+.btn-back {
+  display: block; /* Convierte el enlace en bloque para poder centrarlo */
+  text-align: center; /* Centra el texto horizontalmente */
+  margin-top: 15px; /* Espacio de 15px por encima del enlace */
+  color: #888; /* Color de texto gris */
+  text-decoration: none; /* Elimina la línea de subrayado predeterminada */
+  font-size: 0.9rem; /* Letra un poco más pequeña */
+}
+
+/* Hover de enlace: Seleccionamos 'btn-back' con pseudo-clase ':hover' */
+.btn-back:hover {
+  text-decoration: underline; /* Aparece el subrayado solo al pasar el ratón */
+}
+
+/* --- VALIDACIONES Y ERRORES --- */
+
+/* Mensaje de error: Seleccionamos el <span> con clase 'error-message' */
+.error-message {
+  color: #e74c3c; /* Color de texto rojo para indicar error */
+  font-size: 0.8rem; /* Tamaño de letra pequeño */
+  margin-top: -15px; /* Sube el mensaje para que quede pegado al input con error */
+  margin-bottom: 15px; /* Espacio de 15px debajo del mensaje de error */
+  display: block; /* El mensaje ocupa su propia línea */
+  font-weight: 500; /* Grosor de letra medio */
+  animation: fadeIn 0.3s ease-in; /* Llama a la animación 'fadeIn' definida abajo */
+}
+
+/* Entrada inválida: Seleccionamos la clase '.invalid-input' aplicada por Angular */
+.invalid-input {
+  border-color: #e74c3c !important; /* Fuerza el color del borde a rojo (ignora otras reglas) */
+  background-color: #fdf2f2; /* Pone un fondo rosa muy pálido dentro del input */
+}
+
+/* Alerta de error: Seleccionamos el <div> con clase 'alert-error' */
+.alert-error {
+  background-color: #ffe5e5; /* Color de fondo rosa suave */
+  color: #b71c1c; /* Color de texto rojo oscuro */
+  padding: 12px; /* Espacio interno de la alerta */
+  border-radius: 8px; /* Redondea los bordes de la alerta */
+  border: 1px solid #f44336; /* Borde sólido de 1px en color rojo */
+  margin-bottom: 15px; /* Espacio debajo de la alerta */
+  text-align: center; /* Centra el mensaje de error */
+  font-weight: bold; /* Pone el texto de la alerta en negrita */
+  animation: shake 0.2s ease-in-out 0s 2; /* Llama a la animación 'shake' 2 veces */
+}
+
+/* --- ANIMACIONES (KEYFRAMES) --- */
+
+/* Animación de aparición suave */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; /* Inicia totalmente invisible */
+    transform: translateY(-5px); /* Inicia 5px más arriba de su posición final */
+  }
+  to { 
+    opacity: 1; /* Termina totalmente visible */
+    transform: translateY(0); /* Termina en su posición original */
+  }
+}
+
+/* Animación de sacudida para errores críticos */
+@keyframes shake {
+  0% { transform: translateX(0); } /* Posición inicial centrada */
+  25% { transform: translateX(5px); } /* Se mueve 5px a la derecha */
+  50% { transform: translateX(-5px); } /* Se mueve 5px a la izquierda */
+  75% { transform: translateX(5px); } /* Se mueve 5px a la derecha */
+  100% { transform: translateX(0); } /* Vuelve al centro */
+}
