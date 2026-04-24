@@ -10,7 +10,7 @@ export class AuthService {
   private http = inject(HttpClient);
 
   //Nuestra ruta base para conectarnos al backend
-  private apiUrl = 'http://localhost:8000/api';
+  private apiUrl = 'https://mi-tienda-2026-production.up.railway.app/api';
 
   // Agregamos una variable de tipo signal para guardar al usuario logeado
   public currentUser = signal<any>(null);
@@ -19,7 +19,7 @@ export class AuthService {
   public isAuthenticated = computed(() => !!this.currentUser());
   
   // URL base para las fotos de usuarios (esta se mantiene igual porque apunta al storage) sirve para  obtener las imagenes guardadas ahi para poder acceder a esta ruta es necesario crear un puente de acceso a esta ruta lo cual hacemos desde la terminal, reandonly sirve para decirle a la variable que es solo de lectura esto ayuda o evita que la url se llegase a cambiar por error
-  private readonly userStorageUrl = 'http://localhost:8000/storage/usuarios/';
+  private readonly userStorageUrl = 'https://mi-tienda-2026-production.up.railway.app/storage/usuarios/';
 
   // COMPUTED: Devuelve la URL de la foto o una por defecto
   //userAvatar es una variable de tipo computed es decir una variable que observa a otra variable y en este caso esta varible userAvatar depende de la variable de tipo signal currentUser donde cada que se haga un cambio la variable computed volvera a ejecutarse 

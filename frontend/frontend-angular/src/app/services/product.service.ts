@@ -9,7 +9,7 @@ export class ProductService {
   //Inyectamos el HttpClient para poder hacer peticiones al backend
   private http = inject(HttpClient);
   //Colocamos nuestra ruta base para hacer las peticiones
-  private apiURL = 'http://localhost:8000/api/products';
+  private apiURL = 'https://mi-tienda-2026-production.up.railway.app/api/products';
 
   constructor() { }
 
