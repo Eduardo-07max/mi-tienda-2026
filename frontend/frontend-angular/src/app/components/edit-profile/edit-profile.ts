@@ -80,7 +80,7 @@ export class EditProfile implements OnInit {
     }
     //Ahora aqui hacemos nuestra peticion para actualizar nuestro usuario donde le pasamos el formData
     // Usamos POST con ?_method=PUT porque PHP no lee archivos en PUT nativo fácilmente
-    this.http.post('http://localhost:8000/api/user/profile?_method=PUT', formData)
+    this.http.post('https://mi-tienda-2026-production.up.railway.app/api/user/profile?_method=PUT', formData)
       .subscribe({
         //si la respuesta es correcta hacemos esto
         next: (res: any) => {
