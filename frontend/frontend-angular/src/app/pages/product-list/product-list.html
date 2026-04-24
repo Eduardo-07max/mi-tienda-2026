@@ -22,7 +22,7 @@ que nuestros productos se amontonen unos con otros -->
       <!--Con este if preguntamos si el objeto product.image tiene algo en la propiedad image entonces eso nos dara true y nos mostrara la imagen del usuario-->
         @if (product.image) {
           <!--Aqui colocamos la ruta base para acceder a esa imagen + el nombre especifico de la imagen-->
-          <img [src]="'http://localhost:8000/storage/productos/' + product.image" [alt]="product.name">
+          <img [src]="'https://mi-tienda-2026-production.up.railway.app/storage/productos/' + product.image" [alt]="product.name">
           <!--En caso contrario nos mostrara nuestra imagen por defecto-->
         } @else {
           <img src="images/default-product.jpg" alt="Sin imagen">
