@@ -14,7 +14,8 @@ return [
     | AQUÍ LA SEGURIDAD: Solo permitimos peticiones desde tu app de Angular.
     | Cambia el '*' por la URL de tu frontend.
     */
-    'allowed_origins' => ['http://localhost:4200'], 
+    'allowed_origins' => ['http://localhost:4200',
+    'https://mi-tienda-2026.vercel.app'], 
 
     'allowed_origins_patterns' => [],
 
